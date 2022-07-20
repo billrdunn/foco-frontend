@@ -39,11 +39,10 @@ function Home() {
   return (
     <div>
       <h1>FOCO</h1>
-      <UploadImageButton />
-      <br/>
+      <br />
       {/* <DropdownButton id="dropdown-basic-button" title="Month">
         <Dropdown.Item href="#/action-1" onClick={() => handleMonthChanged(null)}>
-          Show all
+        Show all
         </Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item href="#/action-2" onClick={() => handleMonthChanged("1")}>
@@ -58,6 +57,7 @@ function Home() {
           </Col>
         ))}
       </Row>
+      <UploadImageButton />
     </div>
   );
 }

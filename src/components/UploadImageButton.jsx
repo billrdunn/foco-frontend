@@ -55,13 +55,7 @@ function PreviewButtons({ finished, crop, updateRequest, onUploadCancel, onUploa
         }}
         onClick={onUploadCrop}
       >
-        Upload Cropped
-      </button>
-      <button
-        style={{ display: !finished && updateRequest ? "block" : "none" }}
-        onClick={updateRequest}
-      >
-        Upload without Crop
+        Upload
       </button>
       <button
         style={{
