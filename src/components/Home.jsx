@@ -1,13 +1,13 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Col, Row, DropdownButton, Dropdown } from "react-bootstrap";
-import SearchBar from "./SearchBar";
+import { useSelector } from "react-redux";
+import { Col, Row } from "react-bootstrap";
+// import SearchBar from "./SearchBar";
 import ItemCard from "./ItemCard";
-import { setMonth } from "../reducers/monthReducer";
+// import { setMonth } from "../reducers/monthReducer";
 import UploadImageButton from "./UploadImageButton";
 
 function Home() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const searchVal = useSelector((state) => state.searchVal);
   // const items = useSelector((state) => state.items);
   // const month = useSelector((state) => state.month);
@@ -32,15 +32,16 @@ function Home() {
   //   return filteredItemsByMonth;
   // };
 
-  const handleMonthChanged = (newMonth) => {
-    dispatch(setMonth(newMonth));
-  };
+  // const handleMonthChanged = (newMonth) => {
+  //   dispatch(setMonth(newMonth));
+  // };
 
   return (
     <div>
-      <h1>Items</h1>
+      <h1>FOCO</h1>
       <UploadImageButton />
-      <DropdownButton id="dropdown-basic-button" title="Month">
+      <br/>
+      {/* <DropdownButton id="dropdown-basic-button" title="Month">
         <Dropdown.Item href="#/action-1" onClick={() => handleMonthChanged(null)}>
           Show all
         </Dropdown.Item>
@@ -48,8 +49,8 @@ function Home() {
         <Dropdown.Item href="#/action-2" onClick={() => handleMonthChanged("1")}>
           January
         </Dropdown.Item>
-      </DropdownButton>
-      <SearchBar />
+      </DropdownButton> */}
+      {/* <SearchBar /> */}
       <Row xs={1} md={2} xl={3} className="g-4">
         {imgs.map((img) => (
           <Col key={img.id}>
