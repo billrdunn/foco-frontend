@@ -55,7 +55,7 @@ function Home() {
       <UploadImageButton />
       <Container >
         {showImgs && (
-          <Row xs={2} md={3} lg={4}>
+          <Row xs={2} sm={3} md={4} lg={5}>
             {imgs.map((img) => (
               <Col md key={img.id}>
                 {/* <ItemCard key={img.id} img={img} /> */}
