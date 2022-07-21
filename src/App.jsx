@@ -7,7 +7,7 @@ import { initItems } from "./reducers/itemsReducer";
 import { initUsers } from "./reducers/usersReducer";
 import ItemList from "./components/ItemList";
 import Home from "./components/Home";
-import Navigation from "./components/Navigation";
+// import Navigation from "./components/Navigation";
 import ItemDetailed from "./components/ItemDetailed";
 import { initImgs } from "./reducers/imgUrlsReducer";
 
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="container">
-      <Navigation />
+      {/* <Navigation /> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
