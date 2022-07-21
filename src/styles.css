@@ -37,11 +37,23 @@
     bottom: 80px;
   }
   
+  .preview-button {
+    height: 60px;
+    width: 300px;
+    font-size: 22px;
+    background-color: #101a2c;
+    border: 1px solid #4b5763;
+    color: #b0b1b3;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 4px;
+  }
+  
   .controls {
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    width: 50%;
+    left: 20%;
+    width: 40%;
     transform: translateX(-50%);
     height: 40px;
     display: flex;

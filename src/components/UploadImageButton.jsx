@@ -39,27 +39,29 @@ const PreviewImage = styled.img`
 `;
 
 const ButtonsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 20px;
+  left: 34.4%;
+  width: 40%;
+  height: 40px;
+  display: flex;
+  align-items: center;
 `;
 
 function PreviewButtons({ finished, crop, updateRequest, onUploadCancel, onUploadCrop }) {
   return (
     <ButtonsWrapper>
       <button
+        className="preview-button"
         style={{
           display: !finished && updateRequest && crop ? "block" : "none",
         }}
         onClick={onUploadCrop}
       >
-        Upload
+        OK
       </button>
       <button
+        className="preview-button"
         style={{
           display: !finished && updateRequest && crop ? "block" : "none",
         }}
@@ -134,7 +136,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
               onZoomChange={setZoom}
             />
           </div>
-          <div className="controls">
+          {/* <div className="controls">
             <input
               type="range"
               value={zoom}
@@ -147,7 +149,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
               }}
               className="zoom-range"
             />
-          </div>
+          </div> */}
         </div>
       ) : (
         <PreviewImage src={croppedImg || url} alt="img to upload" />
