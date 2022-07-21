@@ -6,6 +6,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 // import ItemCard from "./ItemCard";
 // import { setMonth } from "../reducers/monthReducer";
 import UploadImageButton from "./UploadImageButton";
+import "../styles.css";
 
 function Home() {
   // const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function Home() {
   //   dispatch(setMonth(newMonth));
   // };
 
+
   return (
     <div>
       <h1>FOCO</h1>
@@ -53,17 +55,18 @@ function Home() {
       </DropdownButton> */}
       {/* <SearchBar /> */}
       <UploadImageButton />
-      <Container >
+      <Container>
         {showImgs && (
           <Row xs={2} sm={3} md={4} lg={5}>
             {imgs.map((img) => (
-              <Col md key={img.id}>
+              <Col key={img.id} >
                 {/* <ItemCard key={img.id} img={img} /> */}
-                <Image fluid src={img.url} />
+                <Image className="image" fluid src={img.url} />
               </Col>
             ))}
           </Row>
         )}
+
       </Container>
     </div>
   );
