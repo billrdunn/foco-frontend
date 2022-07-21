@@ -82,7 +82,10 @@ const UPLOAD_STATES = {
 const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const { id, url, isFallback, type, updateRequest, requestData, previewMethods } = props;
   const [uploadState, setUploadState] = useState(UPLOAD_STATES.NONE);
+  // eslint-disable-next-line no-unused-vars
   const [croppedImg, setCroppedImg] = useState(null);
+
+
   // const dispatch = useDispatch();
   // dispatch(showImgs(false));
 
@@ -151,9 +154,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
             />
           </div> */}
         </div>
-      ) : (
-        <PreviewImage src={croppedImg || url} alt="img to upload" />
-      )}
+      ) : null}
       <PreviewButtons
         finished={isFinished}
         crop={crop}
@@ -161,7 +162,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
         onUploadCancel={onUploadCancel}
         onUploadCrop={onUploadCrop}
       />
-      <p>{isFinished ? "FINISHED" : ""}</p>
+      {/* <p>{isFinished ? "FINISHED" : ""}</p> */}
     </>
   );
 });
