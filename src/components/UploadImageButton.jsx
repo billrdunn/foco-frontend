@@ -15,6 +15,7 @@ import UploadButton from "@rpldy/upload-button";
 import { useDispatch } from "react-redux";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
 import { createNewImgUrl } from "../reducers/imgUrlsReducer";
+import { showImgs } from "../reducers/showImgsReducer";
 import getCroppedImg from "../cropImage";
 import "../styles.css";
 
@@ -24,6 +25,7 @@ const FinishListener = ({ newUrl }) => {
   useItemFinishListener(() => {
     console.log("dispatching newUrl :>> ", newUrl);
     dispatch(createNewImgUrl(newUrl));
+    dispatch(showImgs(true));
   });
 };
 
@@ -79,6 +81,8 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const { id, url, isFallback, type, updateRequest, requestData, previewMethods } = props;
   const [uploadState, setUploadState] = useState(UPLOAD_STATES.NONE);
   const [croppedImg, setCroppedImg] = useState(null);
+  // const dispatch = useDispatch();
+  // dispatch(showImgs(false));
 
   // data for react-easy-crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -161,6 +165,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
 });
 
 function UploadImageButton() {
+  const dispatch = useDispatch();
   const previewMethodsRef = useRef();
 
   const date = new Date();
@@ -188,7 +193,7 @@ function UploadImageButton() {
       }}
     >
       <div className="UploadImageButton">
-        <UploadButton> Upload Image </UploadButton>
+        <UploadButton onClick={() => dispatch(showImgs(false))}> Upload Image </UploadButton>
         <UploadPreview
           PreviewComponent={ItemPreviewWithCrop}
           previewComponentProps={{ previewMethods: previewMethodsRef }}

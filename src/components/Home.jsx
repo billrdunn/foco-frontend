@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
@@ -13,6 +14,7 @@ function Home() {
   // const month = useSelector((state) => state.month);
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
+  const showImgs = useSelector((state) => state.showImgs);
 
   // const filterItems = () => {
   //   const filteredItemsBySearch =
@@ -50,14 +52,16 @@ function Home() {
         </Dropdown.Item>
       </DropdownButton> */}
       {/* <SearchBar /> */}
-      <Row xs={1} md={2} xl={3} className="g-4">
-        {imgs.map((img) => (
-          <Col key={img.id}>
-            <ItemCard key={img.id} img={img} />
-          </Col>
-        ))}
-      </Row>
       <UploadImageButton />
+      {showImgs && (
+        <Row xs={1} md={2} xl={3} className="g-4">
+          {imgs.map((img) => (
+            <Col key={img.id}>
+              <ItemCard key={img.id} img={img} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </div>
   );
 }

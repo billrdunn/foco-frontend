@@ -7,6 +7,7 @@ import searchValReducer from "./reducers/searchValReducer";
 import { signUpStatusReducer } from "./reducers/signUpReducer";
 import monthReducer from "./reducers/monthReducer";
 import imgUrlsReducer from "./reducers/imgUrlsReducer";
+import showImgsReducer from "./reducers/showImgsReducer";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     signUpStatus: signUpStatusReducer,
     month: monthReducer,
     imgUrls: imgUrlsReducer,
+    showImgs: showImgsReducer,
   },
 });
 
