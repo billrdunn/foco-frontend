@@ -111,4 +111,13 @@
     object-fit: cover;
     padding-top: 14%;
   }
+
+  .images-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
   

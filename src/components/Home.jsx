@@ -13,6 +13,7 @@ function Home() {
   // const searchVal = useSelector((state) => state.searchVal);
   // const items = useSelector((state) => state.items);
   // const month = useSelector((state) => state.month);
+
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
   const showImgs = useSelector((state) => state.showImgs);
@@ -39,7 +40,6 @@ function Home() {
   //   dispatch(setMonth(newMonth));
   // };
 
-
   return (
     <div>
       <h1>FOCO</h1>
@@ -54,19 +54,19 @@ function Home() {
         </Dropdown.Item>
       </DropdownButton> */}
       {/* <SearchBar /> */}
-      <UploadImageButton />
-      <Container>
+      <UploadImageButton  />
+      <Container className="images-container">
+        {console.log(`rendering ${imgs.length} images`)}
         {showImgs && (
           <Row xs={2} sm={3} md={4} lg={5}>
             {imgs.map((img) => (
-              <Col key={img.id} >
+              <Col key={img.id}>
                 {/* <ItemCard key={img.id} img={img} /> */}
                 <Image className="image" fluid src={img.url} />
               </Col>
             ))}
           </Row>
         )}
-
       </Container>
     </div>
   );
