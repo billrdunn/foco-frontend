@@ -80,6 +80,7 @@ const UPLOAD_STATES = {
 };
 
 const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
+  const dispatch = useDispatch();
   const { id, url, isFallback, type, updateRequest, requestData, previewMethods } = props;
   const [uploadState, setUploadState] = useState(UPLOAD_STATES.NONE);
   // eslint-disable-next-line no-unused-vars
@@ -117,6 +118,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
 
   const onUploadCancel = useCallback(() => {
     updateRequest(false);
+    dispatch(showImgs(true));
     if (previewMethods.current.clear) {
       previewMethods.current.clear();
     }
