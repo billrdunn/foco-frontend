@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import { useSelector } from "react-redux";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 // import SearchBar from "./SearchBar";
-import ItemCard from "./ItemCard";
+// import ItemCard from "./ItemCard";
 // import { setMonth } from "../reducers/monthReducer";
 import UploadImageButton from "./UploadImageButton";
 
@@ -53,15 +53,18 @@ function Home() {
       </DropdownButton> */}
       {/* <SearchBar /> */}
       <UploadImageButton />
-      {showImgs && (
-        <Row xs={1} md={2} xl={3} className="g-4">
-          {imgs.map((img) => (
-            <Col key={img.id}>
-              <ItemCard key={img.id} img={img} />
-            </Col>
-          ))}
-        </Row>
-      )}
+      <Container >
+        {showImgs && (
+          <Row xs={2} md={3} lg={4}>
+            {imgs.map((img) => (
+              <Col md key={img.id}>
+                {/* <ItemCard key={img.id} img={img} /> */}
+                <Image fluid src={img.url} />
+              </Col>
+            ))}
+          </Row>
+        )}
+      </Container>
     </div>
   );
 }
