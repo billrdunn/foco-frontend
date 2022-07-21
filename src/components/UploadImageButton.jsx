@@ -183,13 +183,13 @@ function UploadImageButton() {
   const year = date.getFullYear().toString();
   const str = `${year}-${month}-${day}-${hour}-${mins}-${sec}-${msec}`;
 
-  const url = `https://focobcn.s3.amazonaws.com/${str}.jpg`;
+  const url = `https://focobcn-compressed.s3.amazonaws.com/${str}.jpg`;
 
   return (
     <Uploady
       // multiple={false}
       destination={{
-        url: "https://focobcn.s3.amazonaws.com/",
+        url: "https://focobcn-raw.s3.amazonaws.com/",
         headers: { ContentType: "image/jpeg" },
       }}
       // enhancer={mockSenderEnhancer}
