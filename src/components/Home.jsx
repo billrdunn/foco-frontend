@@ -6,6 +6,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 // import ItemCard from "./ItemCard";
 // import { setMonth } from "../reducers/monthReducer";
 import "../styles.css";
+import ClickableImage from "./ClickableImage";
 
 function Home() {
   const tmp = useSelector((state) => state.imgUrls);
@@ -15,7 +16,7 @@ function Home() {
   return (
     <div>
       <Container className="logo">
-        <Row >
+        <Row>
           <Col>
             <Image
               className="image"
@@ -29,9 +30,7 @@ function Home() {
         {showImgs && (
           <Row xs={2} sm={3} md={4} lg={5}>
             {imgs.map((img) => (
-              <Col key={img.id}>
-                <Image className="image" fluid src={img.url} />
-              </Col>
+              <ClickableImage key={img.id} img={img} />
             ))}
           </Row>
         )}
