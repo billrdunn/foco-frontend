@@ -9,6 +9,7 @@ import monthReducer from "./reducers/monthReducer";
 import imgUrlsReducer from "./reducers/imgUrlsReducer";
 import showImgsReducer from "./reducers/showImgsReducer";
 import showUploadingReducer from "./reducers/showUploadingReducer";
+import newUrlStrReducer from "./reducers/newUrlStrReducer";
 
 const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ const store = configureStore({
     month: monthReducer,
     imgUrls: imgUrlsReducer,
     showImgs: showImgsReducer,
-    showUploading: showUploadingReducer
+    showUploading: showUploadingReducer,
+    newUrl: newUrlStrReducer,
   },
 });
 

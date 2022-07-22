@@ -2,6 +2,7 @@
 /* eslint-disable react/button-has-type */
 
 import React, { useState, useCallback, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Cropper from "react-easy-crop";
 import Uploady, {
@@ -12,7 +13,6 @@ import Uploady, {
 } from "@rpldy/uploady";
 // import { getMockSenderEnhancer } from "@rpldy/mock-sender";
 import UploadButton from "@rpldy/upload-button";
-import { useDispatch } from "react-redux";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
 import { createNewImgUrl } from "../reducers/imgUrlsReducer";
 import { showImgs } from "../reducers/showImgsReducer";
@@ -20,6 +20,7 @@ import getCroppedImg from "../cropImage";
 import imgUrlsService from "../services/imgUrls";
 import "../styles.css";
 import { showUploading } from "../reducers/showUploadingReducer";
+import { setNewUrlStr } from "../reducers/newUrlStrReducer";
 
 const requestCompressedImage = async (url) => {
   try {
@@ -34,12 +35,15 @@ const requestCompressedImage = async (url) => {
   }
 };
 
-const FinishListener = ({ newUrl }) => {
+const FinishListener = () => {
   const dispatch = useDispatch();
+  const newUrlStr = useSelector((state) => state.newUrl);
 
   useItemFinishListener(async () => {
-    dispatch(showImgs(true));
-    dispatch(showUploading(true));
+    // dispatch(showImgs(true));
+    // dispatch(showUploading(true));
+
+    const newUrl = `https://focobcn-compressed.s3.amazonaws.com/${newUrlStr}.jpg`;
 
     let response = false;
     while (!response) {
@@ -138,6 +142,8 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const isFinished = uploadState === UPLOAD_STATES.FINISHED;
 
   useItemProgressListener(() => setUploadState(UPLOAD_STATES.UPLOADING), id);
+  useItemProgressListener(() => dispatch(showImgs(true)));
+  useItemProgressListener(() => dispatch(showUploading(true)));
   useItemFinalizeListener(() => setUploadState(UPLOAD_STATES.FINISHED), id);
 
   const onUploadCrop = useCallback(async () => {
@@ -207,18 +213,24 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
 function UploadImageButton() {
   const dispatch = useDispatch();
   const previewMethodsRef = useRef();
+  const newStr = useSelector((state) => state.newUrl);
 
-  const date = new Date();
-  const msec = date.getUTCMilliseconds().toString();
-  const sec = date.getUTCSeconds().toString();
-  const mins = date.getMinutes().toString();
-  const hour = date.getHours().toString();
-  const day = date.getDate().toString();
-  const month = (date.getMonth() + 1).toString();
-  const year = date.getFullYear().toString();
-  const str = `${year}-${month}-${day}-${hour}-${mins}-${sec}-${msec}`;
+  const handleClick = () => {
+    const date = new Date();
+    const msec = date.getUTCMilliseconds().toString();
+    const sec = date.getUTCSeconds().toString();
+    const mins = date.getMinutes().toString();
+    const hour = date.getHours().toString();
+    const day = date.getDate().toString();
+    const month = (date.getMonth() + 1).toString();
+    const year = date.getFullYear().toString();
+    const str = `${year}-${month}-${day}-${hour}-${mins}-${sec}-${msec}`;
 
-  const url = `https://focobcn-compressed.s3.amazonaws.com/${str}.jpg`;
+    const url = `https://focobcn-compressed.s3.amazonaws.com/${str}.jpg`;
+    console.log("url :>> ", url);
+    dispatch(showImgs(false));
+    dispatch(setNewUrlStr(str));
+  };
 
   return (
     <Uploady
@@ -229,18 +241,18 @@ function UploadImageButton() {
       }}
       // enhancer={mockSenderEnhancer}
       params={{
-        key: `${str}.jpg`,
+        key: `${newStr}.jpg`,
       }}
     >
       <div className="UploadImageButton">
-        <UploadButton onClick={() => dispatch(showImgs(false))}> Upload Image </UploadButton>
+        <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
         <UploadPreview
           PreviewComponent={ItemPreviewWithCrop}
           previewComponentProps={{ previewMethods: previewMethodsRef }}
           previewMethodsRef={previewMethodsRef}
           fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
         />
-        <FinishListener newUrl={url} />
+        <FinishListener />
       </div>
     </Uploady>
   );
