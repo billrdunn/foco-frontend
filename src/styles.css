@@ -38,8 +38,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 20%;
-    max-height: 20%;
+    max-width: 30%;
+    max-height: 30%;
   }
   
   .crop-container {
