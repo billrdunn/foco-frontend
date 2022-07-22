@@ -5,7 +5,6 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 // import SearchBar from "./SearchBar";
 // import ItemCard from "./ItemCard";
 // import { setMonth } from "../reducers/monthReducer";
-import UploadImageButton from "./UploadImageButton";
 import "../styles.css";
 
 function Home() {
@@ -17,7 +16,6 @@ function Home() {
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
   const showImgs = useSelector((state) => state.showImgs);
-  const showUploading = useSelector((state) => state.showUploading);
 
   // const filterItems = () => {
   //   const filteredItemsBySearch =
@@ -55,8 +53,8 @@ function Home() {
         </Dropdown.Item>
       </DropdownButton> */}
       {/* <SearchBar /> */}
-      <UploadImageButton  />
-      {showUploading && <div>Uploading...</div>}
+      {/* <UploadImageButton  /> */}
+
       <Container className="images-container">
         {/* {console.log(`rendering ${imgs.length} images`)} */}
         {showImgs && (
