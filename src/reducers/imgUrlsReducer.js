@@ -17,12 +17,12 @@ const { updateAll, addImg } = imgUrlSlice.actions;
 export const createNewImgUrl = (newimgUrl) => async (dispatch) => {
   try {
     const imgUrl = await imgUrlService.create({ url: newimgUrl });
-    console.log("adding imgUrl :>> ", imgUrl);
+    // console.log("adding imgUrl :>> ", imgUrl);
     dispatch(addImg(imgUrl));
     const allImgUrls = await imgUrlService.getAll();
     dispatch(updateAll(allImgUrls));
   } catch (exception) {
-    console.log("imgUrlsReducer exception :>> ", exception);
+    // console.log("imgUrlsReducer exception :>> ", exception);
   }
 };
 

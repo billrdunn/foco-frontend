@@ -20,25 +20,45 @@ import getCroppedImg from "../cropImage";
 import imgUrlsService from "../services/imgUrls";
 import "../styles.css";
 
+const requestCompressedImage = async (url) => {
+  try {
+    // eslint-disable-next-line no-await-in-loop
+    await imgUrlsService.getSingle(url);
+    // console.log("response :>> ", response);
+    return true;
+  } catch (exception) {
+    // console.log("exception :>> ", exception);
+    // setTimeout(requestCompressedImage(url), 5000);
+    return false;
+  }
+};
+
 const FinishListener = ({ newUrl }) => {
   const dispatch = useDispatch();
 
   useItemFinishListener(async () => {
-    console.log("dispatching newUrl :>> ", newUrl);
+    dispatch(showImgs(true));
+
+    let response = false;
+    while (!response) {
+      const date = new Date();
+      const sec = date.getUTCSeconds();
+      const msec = date.getUTCMilliseconds();
+      // console.log("msec :>> ", msec);
+      if ((sec * 1000 + msec) % 3000 === 0) {
+        // eslint-disable-next-line no-await-in-loop
+        response = await requestCompressedImage(newUrl);
+      }
+    }
+
+    // console.log("dispatching newUrl :>> ", newUrl);
     dispatch(createNewImgUrl(newUrl));
 
-    let response;
-    do {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        response = await imgUrlsService.getSingle(newUrl);
-        console.log("response :>> ", response);
-      } catch (exception) {
-        console.log("exception :>> ", exception);
-      }
-    } while (!response);
+    // dispatch(showImgs(true));
 
-    dispatch(showImgs(true));
+    // setTimeout(requestCompressedImage(newUrl), 5000);
+
+    // dispatch(createNewImgUrl(newUrl));
   });
 };
 

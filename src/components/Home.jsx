@@ -56,7 +56,7 @@ function Home() {
       {/* <SearchBar /> */}
       <UploadImageButton  />
       <Container className="images-container">
-        {console.log(`rendering ${imgs.length} images`)}
+        {/* {console.log(`rendering ${imgs.length} images`)} */}
         {showImgs && (
           <Row xs={2} sm={3} md={4} lg={5}>
             {imgs.map((img) => (
