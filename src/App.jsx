@@ -10,10 +10,6 @@ import Upload from "./components/Upload";
 function App() {
   const dispatch = useDispatch();
 
-  // If the url matches "/items/:id", we can use the match variable to find the item
-  // const match = useMatch("/items/:id");
-  // const item = match ? items.find((i) => i.id === match.params.id) : null;
-
   useEffect(() => {
     dispatch(initImgs());
   }, [dispatch]);

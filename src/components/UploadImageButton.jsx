@@ -11,7 +11,6 @@ import Uploady, {
   useItemProgressListener,
   useItemFinishListener,
 } from "@rpldy/uploady";
-// import { getMockSenderEnhancer } from "@rpldy/mock-sender";
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
 import { createNewImgUrl } from "../reducers/imgUrlsReducer";
@@ -26,11 +25,9 @@ const requestCompressedImage = async (url) => {
   try {
     // eslint-disable-next-line no-await-in-loop
     await imgUrlsService.getSingle(url);
-    // console.log("response :>> ", response);
     return true;
   } catch (exception) {
-    // console.log("exception :>> ", exception);
-    // setTimeout(requestCompressedImage(url), 5000);
+
     return false;
   }
 };
@@ -40,8 +37,6 @@ const FinishListener = () => {
   const newUrlStr = useSelector((state) => state.newUrlStr);
 
   useItemFinishListener(async () => {
-    // dispatch(showImgs(true));
-    // dispatch(showUploading(true));
 
     const newUrl = `https://focobcn-compressed.s3.amazonaws.com/${newUrlStr}.jpg`;
 
@@ -50,22 +45,15 @@ const FinishListener = () => {
       const date = new Date();
       const sec = date.getUTCSeconds();
       const msec = date.getUTCMilliseconds();
-      // console.log("msec :>> ", msec);
       if ((sec * 1000 + msec) % 3000 === 0) {
         // eslint-disable-next-line no-await-in-loop
         response = await requestCompressedImage(newUrl);
       }
     }
 
-    // console.log("dispatching newUrl :>> ", newUrl);
     dispatch(createNewImgUrl(newUrl));
     dispatch(showUploading(false));
 
-    // dispatch(showImgs(true));
-
-    // setTimeout(requestCompressedImage(newUrl), 5000);
-
-    // dispatch(createNewImgUrl(newUrl));
   });
 };
 
@@ -126,9 +114,6 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   // eslint-disable-next-line no-unused-vars
   const [croppedImg, setCroppedImg] = useState(null);
 
-  // const dispatch = useDispatch();
-  // dispatch(showImgs(false));
-
   // data for react-easy-crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -183,20 +168,6 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
               onZoomChange={setZoom}
             />
           </div>
-          {/* <div className="controls">
-            <input
-              type="range"
-              value={zoom}
-              min={1}
-              max={3}
-              step={0.1}
-              aria-labelledby="Zoom"
-              onChange={(e) => {
-                setZoom(e.target.value);
-              }}
-              className="zoom-range"
-            />
-          </div> */}
         </div>
       ) : null}
       <PreviewButtons
@@ -206,7 +177,6 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
         onUploadCancel={onUploadCancel}
         onUploadCrop={onUploadCrop}
       />
-      {/* <p>{isFinished ? "FINISHED" : ""}</p> */}
     </>
   );
 });
