@@ -3,8 +3,9 @@
 
 import React, { useState, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Cropper from "react-easy-crop";
+import { Container, Image, Row, Col } from "react-bootstrap";
 import Uploady, {
   withRequestPreSendUpdate,
   useItemFinalizeListener,
@@ -85,6 +86,23 @@ const UploadButtonWrapper = styled.div`
   width: 100%;
   height: 100%;
   font-family: DomaineDisplayNarrowMedium;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
 `;
 
 function PreviewButtons({ finished, crop, updateRequest, onUploadCancel, onUploadCrop }) {
@@ -235,7 +253,19 @@ function Upload() {
     >
       <div className="UploadImageButton">
         {isUploading ? (
-          <div> Uploading... </div>
+          <Rotate>
+            <Container className="logo-container">
+              <Row>
+                <Col>
+                  <Image
+                    src="https://focobcn.s3.eu-west-3.amazonaws.com/FOCO_Face.png"
+                    alt="loader"
+                    className="img-logo"
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </Rotate>
         ) : (
           <UploadButtonWrapper>
             <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>

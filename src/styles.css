@@ -21,12 +21,25 @@
     height: 60px;
     width: 300px;
     font-size: 22px;
-    background-color: #101a2c;
+    background-color: #ffffff;
     border: 1px solid #4b5763;
-    color: #b0b1b3;
+    color: #101a2c;
     text-transform: uppercase;
     cursor: pointer;
     margin-bottom: 4px;
+  }
+
+  .img-logo {
+    max-width: fit-content;
+    max-height: fit-content;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 20%;
+    max-height: 20%;
   }
   
   .crop-container {
@@ -41,10 +54,11 @@
     height: 60px;
     width: 300px;
     font-size: 22px;
-    background-color: #101a2c;
+    background-color: #ffffff;
     border: 1px solid #4b5763;
-    color: #b0b1b3;
+    color: #101a2c;
     text-transform: uppercase;
+    text-decoration-color: #010916;
     cursor: pointer;
     margin-bottom: 4px;
   }
