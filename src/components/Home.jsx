@@ -17,6 +17,7 @@ function Home() {
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
   const showImgs = useSelector((state) => state.showImgs);
+  const showUploading = useSelector((state) => state.showUploading);
 
   // const filterItems = () => {
   //   const filteredItemsBySearch =
@@ -55,6 +56,7 @@ function Home() {
       </DropdownButton> */}
       {/* <SearchBar /> */}
       <UploadImageButton  />
+      {showUploading && <div>Uploading...</div>}
       <Container className="images-container">
         {/* {console.log(`rendering ${imgs.length} images`)} */}
         {showImgs && (

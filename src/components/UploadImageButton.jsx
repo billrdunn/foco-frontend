@@ -19,6 +19,7 @@ import { showImgs } from "../reducers/showImgsReducer";
 import getCroppedImg from "../cropImage";
 import imgUrlsService from "../services/imgUrls";
 import "../styles.css";
+import { showUploading } from "../reducers/showUploadingReducer";
 
 const requestCompressedImage = async (url) => {
   try {
@@ -38,6 +39,7 @@ const FinishListener = ({ newUrl }) => {
 
   useItemFinishListener(async () => {
     dispatch(showImgs(true));
+    dispatch(showUploading(true));
 
     let response = false;
     while (!response) {
@@ -53,6 +55,7 @@ const FinishListener = ({ newUrl }) => {
 
     // console.log("dispatching newUrl :>> ", newUrl);
     dispatch(createNewImgUrl(newUrl));
+    dispatch(showUploading(false));
 
     // dispatch(showImgs(true));
 
