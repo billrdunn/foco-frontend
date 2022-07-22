@@ -37,7 +37,7 @@ const requestCompressedImage = async (url) => {
 
 const FinishListener = () => {
   const dispatch = useDispatch();
-  const newUrlStr = useSelector((state) => state.newUrl);
+  const newUrlStr = useSelector((state) => state.newUrlStr);
 
   useItemFinishListener(async () => {
     // dispatch(showImgs(true));
@@ -213,7 +213,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
 function UploadImageButton() {
   const dispatch = useDispatch();
   const previewMethodsRef = useRef();
-  const newStr = useSelector((state) => state.newUrl);
+  const newUrlStr = useSelector((state) => state.newUrlStr);
 
   const handleClick = () => {
     const date = new Date();
@@ -241,7 +241,7 @@ function UploadImageButton() {
       }}
       // enhancer={mockSenderEnhancer}
       params={{
-        key: `${newStr}.jpg`,
+        key: `${newUrlStr}.jpg`,
       }}
     >
       <div className="UploadImageButton">
