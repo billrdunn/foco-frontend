@@ -17,14 +17,27 @@ import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
 import { createNewImgUrl } from "../reducers/imgUrlsReducer";
 import { showImgs } from "../reducers/showImgsReducer";
 import getCroppedImg from "../cropImage";
+import imgUrlsService from "../services/imgUrls";
 import "../styles.css";
 
 const FinishListener = ({ newUrl }) => {
   const dispatch = useDispatch();
 
-  useItemFinishListener(() => {
+  useItemFinishListener(async () => {
     console.log("dispatching newUrl :>> ", newUrl);
     dispatch(createNewImgUrl(newUrl));
+
+    let response;
+    do {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        response = await imgUrlsService.getSingle(newUrl);
+        console.log("response :>> ", response);
+      } catch (exception) {
+        console.log("exception :>> ", exception);
+      }
+    } while (!response);
+
     dispatch(showImgs(true));
   });
 };
@@ -85,7 +98,6 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const [uploadState, setUploadState] = useState(UPLOAD_STATES.NONE);
   // eslint-disable-next-line no-unused-vars
   const [croppedImg, setCroppedImg] = useState(null);
-
 
   // const dispatch = useDispatch();
   // dispatch(showImgs(false));
