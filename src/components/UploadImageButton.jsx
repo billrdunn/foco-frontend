@@ -140,6 +140,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   }, []);
 
   const isFinished = uploadState === UPLOAD_STATES.FINISHED;
+  const isUploading = uploadState === UPLOAD_STATES.UPLOADING;
 
   useItemProgressListener(() => setUploadState(UPLOAD_STATES.UPLOADING), id);
   useItemProgressListener(() => dispatch(showImgs(true)));
@@ -199,7 +200,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
         </div>
       ) : null}
       <PreviewButtons
-        finished={isFinished}
+        finished={isUploading || isFinished}
         crop={crop}
         updateRequest={updateRequest}
         onUploadCancel={onUploadCancel}
