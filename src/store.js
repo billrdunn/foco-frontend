@@ -23,7 +23,7 @@ const store = configureStore({
     imgUrls: imgUrlsReducer,
     showImgs: showImgsReducer,
     showUploading: showUploadingReducer,
-    newUrl: newUrlStrReducer,
+    newUrlStr: newUrlStrReducer,
   },
 });
 
