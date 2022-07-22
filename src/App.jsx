@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import GlobalFonts from './fonts/fonts';
 
 import Home from "./components/Home";
 // import Navigation from "./components/Navigation";
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="container">
+      <GlobalFonts />
       {/* <Navigation /> */}
 
       <Routes>

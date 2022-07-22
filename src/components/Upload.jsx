@@ -11,7 +11,6 @@ import Uploady, {
   useItemProgressListener,
   useItemFinishListener,
 } from "@rpldy/uploady";
-// import { getMockSenderEnhancer } from "@rpldy/mock-sender";
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
 import { useNavigate } from "react-router-dom";
@@ -27,11 +26,8 @@ const requestCompressedImage = async (url) => {
   try {
     // eslint-disable-next-line no-await-in-loop
     await imgUrlsService.getSingle(url);
-    // console.log("response :>> ", response);
     return true;
   } catch (exception) {
-    // console.log("exception :>> ", exception);
-    // setTimeout(requestCompressedImage(url), 5000);
     return false;
   }
 };
@@ -42,9 +38,6 @@ const FinishListener = () => {
   const navigate = useNavigate();
 
   useItemFinishListener(async () => {
-    // dispatch(showImgs(true));
-    // dispatch(showUploading(true));
-
     const newUrl = `https://focobcn-compressed.s3.amazonaws.com/${newUrlStr}.jpg`;
 
     let response = false;
@@ -52,7 +45,6 @@ const FinishListener = () => {
       const date = new Date();
       const sec = date.getUTCSeconds();
       const msec = date.getUTCMilliseconds();
-      // console.log("msec :>> ", msec);
       if ((sec * 1000 + msec) % 3000 === 0) {
         // eslint-disable-next-line no-await-in-loop
         response = await requestCompressedImage(newUrl);
@@ -63,12 +55,6 @@ const FinishListener = () => {
     dispatch(createNewImgUrl(newUrl));
     dispatch(showUploading(false));
     navigate("/");
-
-    // dispatch(showImgs(true));
-
-    // setTimeout(requestCompressedImage(newUrl), 5000);
-
-    // dispatch(createNewImgUrl(newUrl));
   });
 };
 
@@ -89,6 +75,16 @@ const ButtonsWrapper = styled.div`
   height: 40px;
   display: flex;
   align-items: center;
+  font-family: DomaineDisplayNarrowMedium;
+`;
+
+const UploadButtonWrapper = styled.div`
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: DomaineDisplayNarrowMedium;
 `;
 
 function PreviewButtons({ finished, crop, updateRequest, onUploadCancel, onUploadCrop }) {
@@ -188,20 +184,6 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
               onZoomChange={setZoom}
             />
           </div>
-          {/* <div className="controls">
-            <input
-              type="range"
-              value={zoom}
-              min={1}
-              max={3}
-              step={0.1}
-              aria-labelledby="Zoom"
-              onChange={(e) => {
-                setZoom(e.target.value);
-              }}
-              className="zoom-range"
-            />
-          </div> */}
         </div>
       ) : null}
       <PreviewButtons
@@ -255,7 +237,9 @@ function Upload() {
         {isUploading ? (
           <div> Uploading... </div>
         ) : (
-          <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
+          <UploadButtonWrapper>
+            <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
+          </UploadButtonWrapper>
         )}
         <UploadPreview
           PreviewComponent={ItemPreviewWithCrop}
