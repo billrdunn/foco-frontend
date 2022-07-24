@@ -72,11 +72,12 @@ const PreviewImage = styled.img`
 const ButtonsWrapper = styled.div`
   position: absolute;
   bottom: 20px;
-  left: 30.4%;
-  width: 40%;
+  right: 20px;
+  left: 20px;
   height: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-family: DomaineDisplayNarrowMedium;
 `;
 
