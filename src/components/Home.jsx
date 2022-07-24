@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Col, Container, Image, Row } from "react-bootstrap";
 // import SearchBar from "./SearchBar";
@@ -10,7 +10,36 @@ import Gallery from "react-grid-gallery";
 // import ClickableImage from "./ClickableImage";
 import { Helmet } from "react-helmet";
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
+export function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
 function Home() {
+  const { height, width } = useWindowDimensions();
+  console.log("height :>> ", height);
+  console.log("width :>> ", width);
+
+  const side = width / 3;
+
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
   const showImgs = useSelector((state) => state.showImgs);
@@ -20,8 +49,8 @@ function Home() {
     return {
       src: img.url,
       thumbnail: img.url,
-      thumbnailWidth: 320,
-      thumbnailHeight: 320,
+      thumbnailWidth: side,
+      thumbnailHeight: side,
       isSelected: false,
       caption: "",
     };
@@ -48,7 +77,12 @@ function Home() {
       </Container>
       <Container className="gallery-container">
         {showImgs && (
-          <Gallery images={forGallery} enableImageSelection={false} showImageCount={false} />
+          <Gallery
+            rowHeight={side}
+            images={forGallery}
+            enableImageSelection={false}
+            showImageCount={false}
+          />
         )}
       </Container>
       {/* <Container>

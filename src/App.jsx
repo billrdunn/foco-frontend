@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kjd7q2bniv09892inafkjf74hertoqm309fnli3498h3" element={<Upload />} />
-        <Route path="/foco-manage-images" element={<ManageImages />} />
+        <Route path="/manage-images" element={<ManageImages />} />
       </Routes>
     </div>
   );
