@@ -39,7 +39,7 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="gallery-container">
         {showImgs && <Gallery images={forGallery} enableImageSelection={false} />}
       </Container>
       {/* <Container>
