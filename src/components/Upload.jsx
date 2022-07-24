@@ -248,6 +248,17 @@ function Upload() {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </Helmet>
+      <Container className="logo">
+        <Row>
+          <Col>
+            <Image
+              className="image"
+              fluid
+              src="https://focobcn.s3.eu-west-3.amazonaws.com/FOCO_LOGO.png"
+            />
+          </Col>
+        </Row>
+      </Container>
       <Uploady
         // multiple={false}
         destination={{
