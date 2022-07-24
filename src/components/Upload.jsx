@@ -15,6 +15,7 @@ import Uploady, {
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { createNewImgUrl } from "../reducers/imgUrlsReducer";
 import { showImgs } from "../reducers/showImgsReducer";
 import getCroppedImg from "../cropImage";
@@ -240,46 +241,54 @@ function Upload() {
   };
 
   return (
-    <Uploady
-      // multiple={false}
-      destination={{
-        url: "https://focobcn-raw.s3.amazonaws.com/",
-        headers: { ContentType: "image/jpeg" },
-      }}
-      // enhancer={mockSenderEnhancer}
-      params={{
-        key: `${newUrlStr}.jpg`,
-      }}
-    >
-      <div className="UploadImageButton">
-        {isUploading ? (
-          <Rotate>
-            <Container className="logo-container">
-              <Row>
-                <Col>
-                  <Image
-                    src="https://focobcn.s3.eu-west-3.amazonaws.com/FOCO_Face.png"
-                    alt="loader"
-                    className="img-logo"
-                  />
-                </Col>
-              </Row>
-            </Container>
-          </Rotate>
-        ) : (
-          <UploadButtonWrapper>
-            <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
-          </UploadButtonWrapper>
-        )}
-        <UploadPreview
-          PreviewComponent={ItemPreviewWithCrop}
-          previewComponentProps={{ previewMethods: previewMethodsRef }}
-          previewMethodsRef={previewMethodsRef}
-          fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
+    <div>
+      <Helmet>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <FinishListener />
-      </div>
-    </Uploady>
+      </Helmet>
+      <Uploady
+        // multiple={false}
+        destination={{
+          url: "https://focobcn-raw.s3.amazonaws.com/",
+          headers: { ContentType: "image/jpeg" },
+        }}
+        // enhancer={mockSenderEnhancer}
+        params={{
+          key: `${newUrlStr}.jpg`,
+        }}
+      >
+        <div className="UploadImageButton">
+          {isUploading ? (
+            <Rotate>
+              <Container className="logo-container">
+                <Row>
+                  <Col>
+                    <Image
+                      src="https://focobcn.s3.eu-west-3.amazonaws.com/FOCO_Face.png"
+                      alt="loader"
+                      className="img-logo"
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </Rotate>
+          ) : (
+            <UploadButtonWrapper>
+              <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
+            </UploadButtonWrapper>
+          )}
+          <UploadPreview
+            PreviewComponent={ItemPreviewWithCrop}
+            previewComponentProps={{ previewMethods: previewMethodsRef }}
+            previewMethodsRef={previewMethodsRef}
+            fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
+          />
+          <FinishListener />
+        </div>
+      </Uploady>
+    </div>
   );
 }
 
