@@ -9,10 +9,14 @@ const imgUrlSlice = createSlice({
     addImg: (state, action) => {
       state.filter((img) => img.id !== action.payload.id).push(action.payload);
     },
+    removeImg: (state, action) => {
+      const result = state.filter((img) => img.id !== action.payload);
+      return result;
+    },
   },
 });
 
-const { updateAll, addImg } = imgUrlSlice.actions;
+const { updateAll, addImg, removeImg } = imgUrlSlice.actions;
 
 export const createNewImgUrl = (newimgUrl) => async (dispatch) => {
   try {
@@ -30,5 +34,18 @@ export const initImgs = () => async (dispatch) => {
   const imgs = await imgUrlService.getAll();
   dispatch(updateAll(imgs));
 };
+
+export const deleteImgUrl =
+  (imgToDelete) =>
+  async (dispatch) => {
+    try {
+      dispatch(removeImg(imgToDelete.id));
+      await imgUrlService.remove(imgToDelete);
+      const allImgUrls = await imgUrlService.getAll();
+      dispatch(updateAll(allImgUrls));
+    } catch (exception) {
+      console.log("imgUrlsReducer exception :>> ", exception);
+    }
+  };
 
 export default imgUrlSlice.reducer;

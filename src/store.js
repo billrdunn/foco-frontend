@@ -10,6 +10,7 @@ import imgUrlsReducer from "./reducers/imgUrlsReducer";
 import showImgsReducer from "./reducers/showImgsReducer";
 import showUploadingReducer from "./reducers/showUploadingReducer";
 import newUrlStrReducer from "./reducers/newUrlStrReducer";
+import authenticatedReducer from "./reducers/authenticatedReducer";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     showImgs: showImgsReducer,
     showUploading: showUploadingReducer,
     newUrlStr: newUrlStrReducer,
+    authenticated: authenticatedReducer
   },
 });
 

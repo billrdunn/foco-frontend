@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
-import { login } from "../reducers/loginReducer";
+import {authenticate} from "../reducers/authenticatedReducer";
 import useField from "../hooks/index";
 
 function LoginForm() {
@@ -9,12 +9,14 @@ function LoginForm() {
 
   const loginException = useSelector((state) => state.loginException);
 
-  const usernameField = useField("text", "loginInputUsername", "Username");
   const passwordField = useField("password", "loginInputPassword", "password");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(login(usernameField.value, passwordField.value));
+
+    if (event.target.value === process.env.MANAGE_PASSWORD) {
+      dispatch(authenticate(true));
+    }
   };
 
   return (
@@ -22,13 +24,6 @@ function LoginForm() {
       <h2>Login</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Control
-            id={usernameField.id}
-            type={usernameField.type}
-            value={usernameField.value}
-            onChange={usernameField.onChange}
-            placeholder={usernameField.placeholder}
-          />
           <Form.Control
             id={passwordField.id}
             type={passwordField.type}

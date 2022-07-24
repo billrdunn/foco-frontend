@@ -18,4 +18,10 @@ const getSingle = (url) => {
   return request.then((response) => response.data);
 };
 
-export default { getAll, create, getSingle };
+const remove = async (image) => {
+  await axios.delete(image.url);
+  const response = await axios.delete(`${baseUrl}/${image.id}`);
+  return response.data;
+};
+
+export default { getAll, create, getSingle, remove };
