@@ -40,7 +40,9 @@ function Home() {
         </Row>
       </Container>
       <Container className="gallery-container">
-        {showImgs && <Gallery images={forGallery} enableImageSelection={false} />}
+        {showImgs && (
+          <Gallery images={forGallery} enableImageSelection={false} showImageCount={false} />
+        )}
       </Container>
       {/* <Container>
         {showImgs && (
