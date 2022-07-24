@@ -72,7 +72,7 @@ const PreviewImage = styled.img`
 const ButtonsWrapper = styled.div`
   position: absolute;
   bottom: 20px;
-  left: 34.4%;
+  left: 30.4%;
   width: 40%;
   height: 40px;
   display: flex;
@@ -286,9 +286,14 @@ function Upload() {
               </Container>
             </Rotate>
           ) : (
-            <UploadButtonWrapper>
-              <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
-            </UploadButtonWrapper>
+            <div>
+              <UploadButtonWrapper>
+                <UploadButton className="upload-button" onClick={() => handleClick()}>
+                  {" "}
+                  Upload{" "}
+                </UploadButton>
+              </UploadButtonWrapper>
+            </div>
           )}
           <UploadPreview
             PreviewComponent={ItemPreviewWithCrop}
