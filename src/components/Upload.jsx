@@ -235,8 +235,8 @@ function Upload() {
     const year = date.getFullYear().toString();
     const str = `${year}-${month}-${day}-${hour}-${mins}-${sec}-${msec}`;
 
-    const url = `https://focobcn-compressed.s3.amazonaws.com/${str}.jpg`;
-    console.log("url :>> ", url);
+    // const url = `https://focobcn-compressed.s3.amazonaws.com/${str}.jpg`;
+    // console.log("url :>> ", url);
     dispatch(showImgs(false));
     dispatch(setNewUrlStr(str));
   };

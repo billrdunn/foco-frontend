@@ -6,12 +6,25 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 // import ItemCard from "./ItemCard";
 // import { setMonth } from "../reducers/monthReducer";
 import "../styles.css";
-import ClickableImage from "./ClickableImage";
+import Gallery from "react-grid-gallery";
+// import ClickableImage from "./ClickableImage";
 
 function Home() {
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
   const showImgs = useSelector((state) => state.showImgs);
+
+  // eslint-disable-next-line arrow-body-style
+  const forGallery = imgs.map((img) => {
+    return {
+      src: img.url,
+      thumbnail: img.url,
+      thumbnailWidth: 320,
+      thumbnailHeight: 320,
+      isSelected: false,
+      caption: "",
+    };
+  });
 
   return (
     <div>
@@ -26,7 +39,10 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      <Container className="images-container">
+      <Container>
+        {showImgs && <Gallery images={forGallery} enableImageSelection={false} />}
+      </Container>
+      {/* <Container>
         {showImgs && (
           <Row xs={2} sm={3} md={4} lg={5}>
             {imgs.map((img) => (
@@ -34,7 +50,7 @@ function Home() {
             ))}
           </Row>
         )}
-      </Container>
+      </Container> */}
     </div>
   );
 }
