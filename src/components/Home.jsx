@@ -8,6 +8,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import "../styles.css";
 import Gallery from "react-grid-gallery";
 // import ClickableImage from "./ClickableImage";
+import { Helmet } from "react-helmet";
 
 function Home() {
   const tmp = useSelector((state) => state.imgUrls);
@@ -28,6 +29,12 @@ function Home() {
 
   return (
     <div>
+      <Helmet>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no height=device-height"
+        />
+      </Helmet>
       <Container className="logo">
         <Row>
           <Col>
