@@ -22,6 +22,7 @@ import getCroppedImg from "../cropImage";
 import imgUrlsService from "../services/imgUrls";
 import "../styles.css";
 import { showUploading } from "../reducers/showUploadingReducer";
+import { setUploadSuccess } from "../reducers/uploadSuccessReducer";
 import { setNewUrlStr } from "../reducers/newUrlStrReducer";
 
 const requestCompressedImage = async (url) => {
@@ -43,20 +44,31 @@ const FinishListener = () => {
     const newUrl = `https://focobcn-compressed.s3.amazonaws.com/${newUrlStr}.jpg`;
 
     let response = false;
+    let count = 0;
     while (!response) {
       const date = new Date();
       const sec = date.getUTCSeconds();
       const msec = date.getUTCMilliseconds();
-      if ((sec * 1000 + msec) % 3000 === 0) {
+      const time = sec * 1000 + msec;
+      if (time % 3000 === 0) {
+        count += 3;
         // eslint-disable-next-line no-await-in-loop
         response = await requestCompressedImage(newUrl);
+
+        if (response) { // image has been processed
+          dispatch(createNewImgUrl(newUrl));
+          dispatch(showUploading(false));
+          dispatch(setUploadSuccess(true));
+          navigate("/");
+          break;
+        } else if (count >= 45) { // timeout
+          dispatch(showUploading(false));
+          dispatch(setUploadSuccess(false));
+          navigate("/kjd7q2bniv09892inafkjf74hertoqm309fnli3498h3");
+          break;
+        }
       }
     }
-
-    // console.log("dispatching newUrl :>> ", newUrl);
-    dispatch(createNewImgUrl(newUrl));
-    dispatch(showUploading(false));
-    navigate("/");
   });
 };
 
@@ -223,6 +235,7 @@ function Upload() {
   const previewMethodsRef = useRef();
   const newUrlStr = useSelector((state) => state.newUrlStr);
   const isUploading = useSelector((state) => state.showUploading);
+  const uploadSuccess = useSelector((state) => state.uploadSuccess);
 
   const handleClick = () => {
     const date = new Date();
@@ -260,6 +273,9 @@ function Upload() {
           </Col>
         </Row>
       </Container>
+      <br />
+      <br />
+      {!uploadSuccess && <h2> Upload failed, please try again </h2>}
       <Uploady
         // multiple={false}
         destination={{

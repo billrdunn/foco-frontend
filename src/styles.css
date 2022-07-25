@@ -16,6 +16,10 @@
   #logo {
     height: 120px;
   }
+
+  h2 {
+    text-align: center;
+  }
   
   button {
     height: 60px;
