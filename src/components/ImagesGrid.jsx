@@ -110,6 +110,10 @@ function ImagesGrid() {
           showImageCount={false}
           thumbnailStyle={() => thumbnailStyle()}
           tileViewportStyle={() => tileViewportStyle()}
+          showCloseButton={false}
+          backdropClosesModal
+          preloadNextImage={false}
+          onClickImage={() => null}
         />
       )}
     </Container>

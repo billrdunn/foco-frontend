@@ -1,0 +1,37 @@
+diff --git a/node_modules/react-grid-gallery/node_modules/react-images/lib/Lightbox.js b/node_modules/react-grid-gallery/node_modules/react-images/lib/Lightbox.js
+index 84ef846..392337f 100644
+--- a/node_modules/react-grid-gallery/node_modules/react-images/lib/Lightbox.js
++++ b/node_modules/react-grid-gallery/node_modules/react-images/lib/Lightbox.js
+@@ -267,28 +267,14 @@ var Lightbox = function (_Component) {
+ 	}, {
+ 		key: 'renderArrowPrev',
+ 		value: function renderArrowPrev() {
+-			if (this.props.currentImage === 0) return null;
+-
+-			return _react2.default.createElement(_Arrow2.default, {
+-				direction: 'left',
+-				icon: 'arrowLeft',
+-				onClick: this.gotoPrev,
+-				title: this.props.leftArrowTitle,
+-				type: 'button'
+-			});
++
++			return null;
+ 		}
+ 	}, {
+ 		key: 'renderArrowNext',
+ 		value: function renderArrowNext() {
+-			if (this.props.currentImage === this.props.images.length - 1) return null;
+-
+-			return _react2.default.createElement(_Arrow2.default, {
+-				direction: 'right',
+-				icon: 'arrowRight',
+-				onClick: this.gotoNext,
+-				title: this.props.rightArrowTitle,
+-				type: 'button'
+-			});
++			
++			return null;
+ 		}
+ 	}, {
+ 		key: 'renderDialog',
