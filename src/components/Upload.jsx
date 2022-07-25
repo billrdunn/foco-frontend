@@ -55,13 +55,23 @@ const FinishListener = () => {
         // eslint-disable-next-line no-await-in-loop
         response = await requestCompressedImage(newUrl);
 
-        if (response) { // image has been processed
+        if (response) {
+          // image has been processed
           dispatch(createNewImgUrl(newUrl));
           dispatch(showUploading(false));
           dispatch(setUploadSuccess(true));
+          try {
+            // eslint-disable-next-line no-await-in-loop
+            await imgUrlsService.removeByUrl(
+              `https://focobcn-raw.s3.amazonaws.com/${newUrlStr}.jpg`
+            );
+          } catch (exception) {
+            console.log("imgUrlsReducer exception :>> ", exception);
+          }
           navigate("/");
           break;
-        } else if (count >= 45) { // timeout
+        } else if (count >= 45) {
+          // timeout
           dispatch(showUploading(false));
           dispatch(setUploadSuccess(false));
           navigate("/kjd7q2bniv09892inafkjf74hertoqm309fnli3498h3");

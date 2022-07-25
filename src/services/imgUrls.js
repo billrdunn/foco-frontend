@@ -24,4 +24,9 @@ const remove = async (image) => {
   return response.data;
 };
 
-export default { getAll, create, getSingle, remove };
+const removeByUrl = async (url) => {
+  const response = await axios.delete(url);
+  return response.data;
+};
+
+export default { getAll, create, getSingle, remove, removeByUrl };

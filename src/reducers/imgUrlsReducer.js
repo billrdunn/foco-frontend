@@ -35,17 +35,15 @@ export const initImgs = () => async (dispatch) => {
   dispatch(updateAll(imgs));
 };
 
-export const deleteImgUrl =
-  (imgToDelete) =>
-  async (dispatch) => {
-    try {
-      dispatch(removeImg(imgToDelete.id));
-      await imgUrlService.remove(imgToDelete);
-      const allImgUrls = await imgUrlService.getAll();
-      dispatch(updateAll(allImgUrls));
-    } catch (exception) {
-      console.log("imgUrlsReducer exception :>> ", exception);
-    }
-  };
+export const deleteImgUrl = (imgToDelete) => async (dispatch) => {
+  try {
+    dispatch(removeImg(imgToDelete.id));
+    await imgUrlService.remove(imgToDelete);
+    const allImgUrls = await imgUrlService.getAll();
+    dispatch(updateAll(allImgUrls));
+  } catch (exception) {
+    console.log("imgUrlsReducer exception :>> ", exception);
+  }
+};
 
 export default imgUrlSlice.reducer;
