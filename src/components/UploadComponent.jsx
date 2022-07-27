@@ -4,6 +4,7 @@ import React, { useState, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import Cropper from "react-easy-crop";
+import { Helmet } from "react-helmet";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import Uploady, {
   withRequestPreSendUpdate,
@@ -253,41 +254,50 @@ function UploadComponent() {
     dispatch(setNewUrlStr(str));
   };
   return (
-    <Uploady
-      // multiple={false}
-      destination={{
-        url: "https://focobcn-raw.s3.amazonaws.com/",
-        headers: { ContentType: "image/jpeg" },
-      }}
-      // enhancer={mockSenderEnhancer}
-      params={{
-        key: `${newUrlStr}.jpg`,
-      }}
-    >
-      <div className="flex justify-center items-center pt-[60px]">
-        <div>
-          {isUploading ? (
-            <div>
-              <Uploading />
-            </div>
-          ) : (
-            <UploadButton
-              className="font-domaine px-6 py-1.5 text-black rounded-full"
-              onClick={() => handleClick()}
-            >
-              <div className="w-56 text-lg">Upload face</div>
-            </UploadButton>
-          )}
-          <UploadPreview
-            PreviewComponent={ItemPreviewWithCrop}
-            previewComponentProps={{ previewMethods: previewMethodsRef }}
-            previewMethodsRef={previewMethodsRef}
-            fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
-          />
-          <FinishListener />
+    <>
+      <Helmet>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no height=device-height"
+        />
+      </Helmet>
+      {/* {!uploadSuccess && <h2> Upload failed, please try again </h2>} */}
+      <Uploady
+        // multiple={false}
+        destination={{
+          url: "https://focobcn-raw.s3.amazonaws.com/",
+          headers: { ContentType: "image/jpeg" },
+        }}
+        // enhancer={mockSenderEnhancer}
+        params={{
+          key: `${newUrlStr}.jpg`,
+        }}
+      >
+        <div className="flex justify-center items-center pt-[60px]">
+          <div>
+            {isUploading ? (
+              <div>
+                <Uploading />
+              </div>
+            ) : (
+              <UploadButton
+                className="font-domaine px-6 py-1.5 text-black rounded-full"
+                onClick={() => handleClick()}
+              >
+                <div className="w-56 text-lg">Upload face</div>
+              </UploadButton>
+            )}
+            <UploadPreview
+              PreviewComponent={ItemPreviewWithCrop}
+              previewComponentProps={{ previewMethods: previewMethodsRef }}
+              previewMethodsRef={previewMethodsRef}
+              fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
+            />
+            <FinishListener />
+          </div>
         </div>
-      </div>
-    </Uploady>
+      </Uploady>
+    </>
   );
 }
 
