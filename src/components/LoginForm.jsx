@@ -20,7 +20,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="loginFormDiv">
+    <div>
       <h2>Login</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>

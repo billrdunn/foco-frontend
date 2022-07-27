@@ -80,7 +80,7 @@ function ItemList() {
         </Dropdown.Item>
       </DropdownButton>
       <SearchBar />
-      <Row xs={1} md={2} xl={3} className="g-4">
+      <Row xs={1} md={2} xl={3} >
         {filterItems().map((item) => (
           <Col key={item.id}>
             <ItemCard key={item.id} item={item} found={loggedInUser.items.includes(item.id)} />

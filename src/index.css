@@ -1,10 +1,61 @@
-h1 {
-    color: green;
-  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  .item {
-    color: grey;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    font-size: 15px;
+@font-face {
+  font-family: "Domaine Display Narrow";
+  src: url("./fonts/DomaineDisplayNarrow-Medium.woff2");
+}
+
+@layer base {
+  button {
+    @apply text-black bg-slate-200 rounded-full;
   }
+  html {
+    font-family: "Domaine Display Narrow";
+  }
+}
+
+@media screen and (min-width: 0px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
+  }
+  .font-domaine {
+    font-size: 20px;
+  }
+  .logo {
+    width: 124px;
+  }
+  .container {
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(307px, 1fr));
+  }
+  .font-domaine {
+    font-size: 30px;
+  }
+  .logo {
+    width: 192px;
+  }
+}
+
+.font-domaine {
+  font-family: "Domaine Display Narrow";
+}
+
+.grid {
+  display: grid;
+  grid-gap: 10px;
+}
+
+.text-grid {
+  display: grid;
+  grid-gap: 10px;
+}
+
+
+

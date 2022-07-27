@@ -23,7 +23,7 @@ function Togglable({ buttonLabel, children }) {
           {buttonLabel}
         </button>
       </div>
-      <div style={showWhenVisible} className="togglableContent">
+      <div style={showWhenVisible} >
         {children}
         <button type="submit" onClick={toggleVisibility}>
           cancel

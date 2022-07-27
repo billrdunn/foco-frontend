@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-/* eslint-disable react/button-has-type */
-
 import React, { useState, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Cropper from "react-easy-crop";
+import { Container, Image, Row, Col } from "react-bootstrap";
 import Uploady, {
   withRequestPreSendUpdate,
   useItemFinalizeListener,
@@ -13,13 +13,16 @@ import Uploady, {
 } from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
+import { useNavigate } from "react-router-dom";
 import { createNewImgUrl } from "../reducers/imgUrlsReducer";
 import { showImgs } from "../reducers/showImgsReducer";
 import getCroppedImg from "../cropImage";
 import imgUrlsService from "../services/imgUrls";
 import "../styles.css";
 import { showUploading } from "../reducers/showUploadingReducer";
+import { setUploadSuccess } from "../reducers/uploadSuccessReducer";
 import { setNewUrlStr } from "../reducers/newUrlStrReducer";
+import Uploading from "./Uploading";
 
 const requestCompressedImage = async (url) => {
   try {
@@ -27,7 +30,6 @@ const requestCompressedImage = async (url) => {
     await imgUrlsService.getSingle(url);
     return true;
   } catch (exception) {
-
     return false;
   }
 };
@@ -35,25 +37,47 @@ const requestCompressedImage = async (url) => {
 const FinishListener = () => {
   const dispatch = useDispatch();
   const newUrlStr = useSelector((state) => state.newUrlStr);
+  const navigate = useNavigate();
 
   useItemFinishListener(async () => {
-
     const newUrl = `https://focobcn-compressed.s3.amazonaws.com/${newUrlStr}.jpg`;
 
     let response = false;
+    let count = 0;
     while (!response) {
       const date = new Date();
       const sec = date.getUTCSeconds();
       const msec = date.getUTCMilliseconds();
-      if ((sec * 1000 + msec) % 3000 === 0) {
+      const time = sec * 1000 + msec;
+      if (time % 3000 === 0) {
+        count += 3;
         // eslint-disable-next-line no-await-in-loop
         response = await requestCompressedImage(newUrl);
+
+        if (response) {
+          // image has been processed
+          dispatch(createNewImgUrl(newUrl));
+          dispatch(showUploading(false));
+          dispatch(setUploadSuccess(true));
+          try {
+            // eslint-disable-next-line no-await-in-loop
+            await imgUrlsService.removeByUrl(
+              `https://focobcn-raw.s3.amazonaws.com/${newUrlStr}.jpg`
+            );
+          } catch (exception) {
+            console.log("imgUrlsReducer exception :>> ", exception);
+          }
+          navigate("/");
+          break;
+        } else if (count >= 45) {
+          // timeout
+          dispatch(showUploading(false));
+          dispatch(setUploadSuccess(false));
+          navigate("/kjd7q2bniv09892inafkjf74hertoqm309fnli3498h3");
+          break;
+        }
       }
     }
-
-    dispatch(createNewImgUrl(newUrl));
-    dispatch(showUploading(false));
-
   });
 };
 
@@ -69,29 +93,52 @@ const PreviewImage = styled.img`
 const ButtonsWrapper = styled.div`
   position: absolute;
   bottom: 20px;
-  left: 34.4%;
-  width: 40%;
+  right: 20px;
+  left: 20px;
   height: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-family: DomaineDisplayNarrowMedium;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
 `;
 
 function PreviewButtons({ finished, crop, updateRequest, onUploadCancel, onUploadCrop }) {
   return (
     <ButtonsWrapper>
       <button
+        className="font-domaine inline-block px-6 py-1.5 m-2 bg-white text-black rounded-full"
         style={{
           display: !finished && updateRequest && crop ? "block" : "none",
         }}
         onClick={onUploadCrop}
+        type="button"
       >
         OK
       </button>
       <button
+        className="font-domaine inline-block px-6 py-1.5 m-2 bg-white text-black rounded-full"
         style={{
           display: !finished && updateRequest && crop ? "block" : "none",
         }}
         onClick={onUploadCancel}
+        type="button"
       >
         Cancel
       </button>
@@ -111,6 +158,10 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const [uploadState, setUploadState] = useState(UPLOAD_STATES.NONE);
   // eslint-disable-next-line no-unused-vars
   const [croppedImg, setCroppedImg] = useState(null);
+  //   const navigate = useNavigate();
+
+  // const dispatch = useDispatch();
+  // dispatch(showImgs(false));
 
   // data for react-easy-crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -128,6 +179,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   useItemProgressListener(() => setUploadState(UPLOAD_STATES.UPLOADING), id);
   useItemProgressListener(() => dispatch(showImgs(true)));
   useItemProgressListener(() => dispatch(showUploading(true)));
+  //   useItemFinalizeListener(() => navigate("/"));
   useItemFinalizeListener(() => setUploadState(UPLOAD_STATES.FINISHED), id);
 
   const onUploadCrop = useCallback(async () => {
@@ -175,14 +227,16 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
         onUploadCancel={onUploadCancel}
         onUploadCrop={onUploadCrop}
       />
+      {/* {isUploading && navigate("/")} */}
     </>
   );
 });
 
-function UploadImageButton() {
+function UploadComponent() {
   const dispatch = useDispatch();
   const previewMethodsRef = useRef();
   const newUrlStr = useSelector((state) => state.newUrlStr);
+  const isUploading = useSelector((state) => state.showUploading);
 
   const handleClick = () => {
     const date = new Date();
@@ -195,12 +249,9 @@ function UploadImageButton() {
     const year = date.getFullYear().toString();
     const str = `${year}-${month}-${day}-${hour}-${mins}-${sec}-${msec}`;
 
-    const url = `https://focobcn-compressed.s3.amazonaws.com/${str}.jpg`;
-    console.log("url :>> ", url);
     dispatch(showImgs(false));
     dispatch(setNewUrlStr(str));
   };
-
   return (
     <Uploady
       // multiple={false}
@@ -213,18 +264,31 @@ function UploadImageButton() {
         key: `${newUrlStr}.jpg`,
       }}
     >
-      <div>
-        <UploadButton onClick={() => handleClick()}> Upload Image </UploadButton>
-        <UploadPreview
-          PreviewComponent={ItemPreviewWithCrop}
-          previewComponentProps={{ previewMethods: previewMethodsRef }}
-          previewMethodsRef={previewMethodsRef}
-          fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
-        />
-        <FinishListener />
+      <div className="flex justify-center items-center pt-[60px]">
+        <div>
+          {isUploading ? (
+            <div>
+              <Uploading />
+            </div>
+          ) : (
+            <UploadButton
+              className="font-domaine px-6 py-1.5 text-black rounded-full"
+              onClick={() => handleClick()}
+            >
+              <div className="w-56 text-lg">Upload face</div>
+            </UploadButton>
+          )}
+          <UploadPreview
+            PreviewComponent={ItemPreviewWithCrop}
+            previewComponentProps={{ previewMethods: previewMethodsRef }}
+            previewMethodsRef={previewMethodsRef}
+            fallbackUrl="https://icon-library.net/images/image-placeholder-icon/image-placeholder-icon-6.jpg"
+          />
+          <FinishListener />
+        </div>
       </div>
     </Uploady>
   );
 }
 
-export default UploadImageButton;
+export default UploadComponent;

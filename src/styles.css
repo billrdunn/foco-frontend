@@ -1,164 +1,25 @@
-.App {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-  #logo {
-    max-height: 500px;
-    margin-top: 20px;
-  }
-  
-  body {
-    background: #010916;
-    color: #fff;
-  }
-  
-  #logo {
-    height: 120px;
-  }
+.app-container {
+  /* Layout Properties */
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
 
-  h2 {
-    text-align: center;
-  }
-  
-  button {
-    height: 60px;
-    width: 300px;
-    font-size: 22px;
-    background-color: #ffffff;
-    border: 1px solid #4b5763;
-    color: #101a2c;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-bottom: 4px;
-  }
+  /* UI Properties */
 
-  .img-logo {
-    max-width: 100%;
-    max-height: 100%;
-  }
+  background: #000000 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
 
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 50%;
-    max-height: 50%;
-  }
-  
-  .crop-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  
-  .preview-button {
-    height: 50px;
-    width: 120px;
-    font-size: 22px;
-    background-color: #ffffff;
-    border: 1px solid #4b5763;
-    color: #101a2c;
-    text-transform: uppercase;
-    text-decoration-color: #010916;
-    cursor: pointer;
-    margin-bottom: 4px;
-    border-radius: 20px;
-    margin: 5%;
-  }
-  
-  .upload-button {
-    height: 50px;
-    width: 120px;
-    font-size: 22px;
-    background-color: #ffffff;
-    border: 1px solid #4b5763;
-    color: #101a2c;
-    text-transform: uppercase;
-    text-decoration-color: #010916;
-    cursor: pointer;
-    margin-bottom: 4px;
-    border-radius: 20px;
-    margin-top: 30px;
-    
-  }
-  
-  .controls {
-    position: absolute;
-    bottom: 20px;
-    left: 20%;
-    width: 40%;
-    transform: translateX(-50%);
-    height: 40px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .slider {
-    padding: 22px 0px;
-  }
-  
-  .zoom-range {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    height: 2px;
-    border-top: 5px solid #fff;
-    border-bottom: 5px solid #fff;
-    background: #3f51b5;
-    width: 100%;
-  }
-  
-  .zoom-range::-moz-range-thumb {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 1px solid #3f51b5;
-    background: #3f51b5;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  }
-  
-  .zoom-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 1px solid #3f51b5;
-    background: #3f51b5;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  }
-  
-  .controls:hover input[type="range"]::-webkit-slider-thumb {
-    box-shadow: 0px 0px 0px 8px rgba(63, 81, 181, 0.16);
-    border-radius: 50%;
-  }
-  
-  .controls:hover input[type="range"]::-moz-range-thumb {
-    box-shadow: 0px 0px 0px 8px rgba(63, 81, 181, 0.16);
-  }
+.logo {
+  /* Layout Properties */
 
-  .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  top: 60px;
+  left: 864px;
+  width: 192px;
+  height: 39px;
 
-  .gallery-container {
-    margin-top: 30px;
-    padding-bottom: 30px;
-  }
+  /* UI Properties */
 
-  .logo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin-top: 30px;
-  }
-
-
-
-  
+  opacity: 1;
+}

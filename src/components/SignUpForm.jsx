@@ -24,7 +24,7 @@ function SignUpForm() {
   };
 
   return (
-    <div className="signUpFormDiv">
+    <div>
       <h2>Sign Up</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>

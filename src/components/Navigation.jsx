@@ -13,7 +13,7 @@ function Navigation() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
+        <Nav>
           <Nav.Link href="#" as="span">
             <Link style={padding} to="/">
               home

@@ -28,7 +28,7 @@ function ItemDetailed({ item }) {
   };
 
   return (
-    <div className="item" style={itemStyle} id="itemDetailsDiv">
+    <div style={itemStyle} id="itemDetailsDiv">
       <h2>{item.latin}</h2>
       <span>{item.common}</span>
       <p>Cap: {item.description.cap}</p>

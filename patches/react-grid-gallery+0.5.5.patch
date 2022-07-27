@@ -1,0 +1,26 @@
+diff --git a/node_modules/react-grid-gallery/lib/Gallery.js b/node_modules/react-grid-gallery/lib/Gallery.js
+index dbaf845..34587fc 100755
+--- a/node_modules/react-grid-gallery/lib/Gallery.js
++++ b/node_modules/react-grid-gallery/lib/Gallery.js
+@@ -32,6 +32,7 @@ var Gallery = function (_Component) {
+     _inherits(Gallery, _Component);
+ 
+     function Gallery(props) {
++        console.log('rendering Gallery');
+         _classCallCheck(this, Gallery);
+ 
+         var _this = _possibleConstructorReturn(this, (Gallery.__proto__ || Object.getPrototypeOf(Gallery)).call(this, props));
+@@ -45,11 +46,11 @@ var Gallery = function (_Component) {
+         };
+ 
+         _this.onResize = _this.onResize.bind(_this);
+-        _this.closeLightbox = _this.closeLightbox.bind(_this);
++        _this.closeLightbox = _this.onClickImage.bind(_this);
+         _this.gotoImage = _this.gotoImage.bind(_this);
+         _this.gotoNext = _this.gotoNext.bind(_this);
+         _this.gotoPrevious = _this.gotoPrevious.bind(_this);
+-        _this.onClickImage = _this.onClickImage.bind(_this);
++        _this.onClickImage = _this.closeLightbox.bind(_this);
+         _this.openLightbox = _this.openLightbox.bind(_this);
+         _this.onSelectImage = _this.onSelectImage.bind(_this);
+         return _this;

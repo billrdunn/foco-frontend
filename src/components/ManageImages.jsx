@@ -47,11 +47,11 @@ function ImageGrid() {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no height=device-height"
         />
       </Helmet>
-      <Container className="logo">
+      <Container >
         <Row>
           <Col>
             <Image
-              className="image"
+              
               fluid
               src="https://focobcn.s3.eu-west-3.amazonaws.com/FOCO_LOGO.png"
             />
@@ -60,7 +60,7 @@ function ImageGrid() {
       </Container>
       <br />
       <h1>tap an image to delete it</h1>
-      <Container className="gallery-container">
+      <Container >
         {showImgs && (
           <div
             style={{
