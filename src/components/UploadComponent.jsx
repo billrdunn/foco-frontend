@@ -4,8 +4,6 @@ import React, { useState, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import Cropper from "react-easy-crop";
-import { Helmet } from "react-helmet";
-import { Container, Image, Row, Col } from "react-bootstrap";
 import Uploady, {
   withRequestPreSendUpdate,
   useItemFinalizeListener,
@@ -257,12 +255,6 @@ function UploadComponent() {
   };
   return (
     <>
-      <Helmet>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no height=device-height"
-        />
-      </Helmet>
       {/* {!uploadSuccess && <h2> Upload failed, please try again </h2>} */}
       <Uploady
         // multiple={false}
