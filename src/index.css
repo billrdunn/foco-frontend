@@ -18,6 +18,21 @@
 
 @media screen and (min-width: 0px) {
   .grid {
+    grid-template-columns: 1fr 1fr
+  }
+  .font-domaine {
+    font-size: 20px;
+  }
+  .logo {
+    width: 124px;
+  }
+  .container {
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  .grid {
     grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
   }
   .font-domaine {
