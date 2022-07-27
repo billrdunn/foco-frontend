@@ -57,8 +57,11 @@ const FinishListener = () => {
 
         if (response) {
           // image has been processed
+          navigate("/");
+          setTimeout(async () => {
+            dispatch(showUploading(false));
+          }, 1000);
           dispatch(createNewImgUrl(newUrl));
-          dispatch(showUploading(false));
           dispatch(setUploadSuccess(true));
           try {
             // eslint-disable-next-line no-await-in-loop
@@ -68,7 +71,6 @@ const FinishListener = () => {
           } catch (exception) {
             console.log("imgUrlsReducer exception :>> ", exception);
           }
-          navigate("/");
           break;
         } else if (count >= 45) {
           // timeout
