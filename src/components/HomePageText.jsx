@@ -3,8 +3,8 @@ import React from "react";
 // eslint-disable-next-line react/prop-types
 function HomePageText({ blank }) {
   return (
-    <div className=" align-top h-[165px] w-auto justify-center">
-      <div className="mob:columns-1 tab:columns-1 desk:columns-2 mt-60px">
+    <div className=" align-top w-auto justify-center">
+      <div className="mob:columns-1 tab:columns-1 desk:columns-2 my-[60px]">
         {!blank && (
           <>
             <div className="text-white text-center font-domaine">
