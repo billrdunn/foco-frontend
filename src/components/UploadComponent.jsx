@@ -238,6 +238,9 @@ function UploadComponent() {
   const previewMethodsRef = useRef();
   const newUrlStr = useSelector((state) => state.newUrlStr);
   const isUploading = useSelector((state) => state.showUploading);
+  const uploadSuccess = useSelector((state) => state.uploadSuccess);
+
+  const showFailureText = !uploadSuccess && !isUploading;
 
   const handleClick = () => {
     const date = new Date();
@@ -255,7 +258,11 @@ function UploadComponent() {
   };
   return (
     <>
-      {/* {!uploadSuccess && <h2> Upload failed, please try again </h2>} */}
+      <div className="flex justify-center items-center">
+        {showFailureText && (
+          <h1 className="text-white text-[25px]"> Upload failed, please try again. </h1>
+        )}
+      </div>
       <Uploady
         // multiple={false}
         destination={{
