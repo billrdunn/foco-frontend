@@ -55,7 +55,7 @@ function ManageImages() {
   const authenticated = useSelector((state) => state.authenticated);
 
   return (
-    <div className="bg-black absolute w-full h-full overflow-hidden px-[10px]">
+    <div className="bg-black absolute w-auto h-auto px-[10px] pb-[10px]">
       {authenticated ? <ImageGrid /> : <LoginForm />};
     </div>
   );
