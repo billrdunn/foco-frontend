@@ -9,6 +9,7 @@ import Uploady, {
   useItemFinalizeListener,
   useItemProgressListener,
   useItemFinishListener,
+  useItemStartListener,
 } from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview, { PREVIEW_TYPES } from "@rpldy/upload-preview";
@@ -155,14 +156,18 @@ const UPLOAD_STATES = {
 
 const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id, url, isFallback, type, updateRequest, requestData, previewMethods } = props;
   const [uploadState, setUploadState] = useState(UPLOAD_STATES.NONE);
   // eslint-disable-next-line no-unused-vars
   const [croppedImg, setCroppedImg] = useState(null);
   //   const navigate = useNavigate();
 
-  // const dispatch = useDispatch();
-  // dispatch(showImgs(false));
+  const handleFallback = () => {
+    if (isFallback) {
+      window.location.reload(false);
+    }
+  };
 
   // data for react-easy-crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -180,7 +185,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   useItemProgressListener(() => setUploadState(UPLOAD_STATES.UPLOADING), id);
   useItemProgressListener(() => dispatch(showImgs(true)));
   useItemProgressListener(() => dispatch(showUploading(true)));
-  //   useItemFinalizeListener(() => navigate("/"));
+  useItemStartListener(() => handleFallback());
   useItemFinalizeListener(() => setUploadState(UPLOAD_STATES.FINISHED), id);
 
   const onUploadCrop = useCallback(async () => {
@@ -202,9 +207,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
     }
   }, [updateRequest, previewMethods]);
 
-  return isFallback || type !== PREVIEW_TYPES.IMAGE ? (
-    <PreviewImage src={url} alt="fallback img" />
-  ) : (
+  return isFallback || type !== PREVIEW_TYPES.IMAGE ? null : (
     <>
       {requestData && uploadState === UPLOAD_STATES.NONE ? (
         <div>
