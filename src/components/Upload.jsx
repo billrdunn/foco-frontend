@@ -10,20 +10,24 @@ function Upload() {
 
   if (isUploading) {
     return (
-      <div className="flex flex-col h-screen bg-black">
-        <Header />
-        <HomePageText blank={!isUploading} />
-        <UploadComponent />
+      <div className="bg-black absolute w-full h-full overflow-hidden ">
+        <div className="flex flex-col h-screen ">
+          <Header />
+          <HomePageText blank={!isUploading} />
+          <UploadComponent />
+        </div>
       </div>
     );
   }
   return (
-    <div className="flex flex-col h-screen bg-black">
-      <Header />
-      <HomePageText blank={!isUploading} />
-      <UploadComponent />
-      <HomePageText blank={!isUploading} />
-      <div className="flex w-auto h-[85px] items-end mt-[60px]" />
+    <div className="bg-black absolute w-full h-full overflow-hidden">
+      <div className="flex flex-col h-screen ">
+        <Header />
+        <HomePageText blank={!isUploading} />
+        <UploadComponent />
+        <HomePageText blank={!isUploading} />
+        <div className="flex w-auto h-[85px] items-end mt-[60px]" />
+      </div>
     </div>
   );
 }
