@@ -1,16 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Container, Image, Row } from "react-bootstrap";
-// import SearchBar from "./SearchBar";
-// import ItemCard from "./ItemCard";
-// import { setMonth } from "../reducers/monthReducer";
 import "../styles.css";
 import Gallery from "react-grid-gallery";
 // import ClickableImage from "./ClickableImage";
-import { Helmet } from "react-helmet";
 import { deleteImgUrl } from "../reducers/imgUrlsReducer";
 import LoginForm from "./LoginForm";
+import Header from "./Header";
+import GridItem from "./GridItem";
 
 function ImageGrid() {
   const dispatch = useDispatch();
@@ -29,11 +27,12 @@ function ImageGrid() {
       caption: "",
     };
   });
-  const onClickThumbnail = (index, image) => {
-    const imgUrl = image.target.currentSrc;
+  const onClickThumbnail = (image) => {
+
+    const imgUrl = image.url;
     console.log(imgUrl);
 
-    const imgToDelete = imgs.find((img) => img.url === image.target.currentSrc);
+    const imgToDelete = imgs.find((img) => img.url === imgUrl);
 
     console.log("imgToDelete :>> ", imgToDelete);
     dispatch(deleteImgUrl(imgToDelete));
@@ -41,55 +40,13 @@ function ImageGrid() {
 
   return (
     <div>
-      <Helmet>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no height=device-height"
-        />
-      </Helmet>
-      <Container >
-        <Row>
-          <Col>
-            <Image
-              
-              fluid
-              src="https://focobcn.s3.eu-west-3.amazonaws.com/FOCO_LOGO.png"
-            />
-          </Col>
-        </Row>
-      </Container>
-      <br />
-      <h1>tap an image to delete it</h1>
-      <Container >
-        {showImgs && (
-          <div
-            style={{
-              display: "block",
-              minHeight: "250px",
-              minWidth: "250px",
-              width: "100%",
-              overflow: "auto",
-            }}
-          >
-            <Gallery
-              images={forGallery}
-              showImageCount={false}
-              enableLightBox={false}
-              enableImageSelection={false}
-              onClickThumbnail={onClickThumbnail}
-            />
-          </div>
-        )}
-      </Container>
-      {/* <Container>
-        {showImgs && (
-          <Row xs={2} sm={3} md={4} lg={5}>
-            {imgs.map((img) => (
-              <ClickableImage key={img.id} img={img} />
-            ))}
-          </Row>
-        )}
-      </Container> */}
+      <Header />
+      <h1 className="text-white">tap an image to delete it</h1>
+      <div className="grid pt-[30px]">
+        {imgs.map((img) => (
+          <GridItem onClick={() => onClickThumbnail(img)} key={img.id} img={img} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -97,7 +54,11 @@ function ImageGrid() {
 function ManageImages() {
   const authenticated = useSelector((state) => state.authenticated);
 
-  return authenticated ? <ImageGrid /> : <LoginForm />;
+  return (
+    <div className="bg-black px-10px pb-10px w-auto h-full">
+      {authenticated ? <ImageGrid /> : <LoginForm />};
+    </div>
+  );
 }
 
 export default ManageImages;

@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
-import {authenticate} from "../reducers/authenticatedReducer";
+import { authenticate } from "../reducers/authenticatedReducer";
 import useField from "../hooks/index";
+import Header from "./Header";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function LoginForm() {
 
   return (
     <div>
-      <h2>Login</h2>
+      <Header />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Control
@@ -34,7 +35,7 @@ function LoginForm() {
         </Form.Group>
         {loginException}
         <br />
-        <Button variant="primary" type="submit">
+        <Button className="bg-white text-black" variant="primary" type="submit">
           Login
         </Button>
       </Form>

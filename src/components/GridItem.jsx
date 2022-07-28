@@ -3,16 +3,14 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-function GridItem({ img }) {
+function GridItem({ img, onClick }) {
     
   return (
     <div>
       <img
         alt="pic"
         src={img.url}
-        onClick={() => {
-          console.log(img.url);
-        }}
+        onClick={onClick}
       />
     </div>
   );
