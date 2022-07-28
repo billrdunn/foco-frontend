@@ -165,7 +165,7 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
 
   const handleFallback = () => {
     if (isFallback) {
-      window.location.reload(false);
+      window.location.reload(true);
     }
   };
 
