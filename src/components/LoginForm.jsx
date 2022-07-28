@@ -23,22 +23,27 @@ function LoginForm() {
   return (
     <div>
       <Header />
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Control
-            id={passwordField.id}
-            type={passwordField.type}
-            value={passwordField.value}
-            onChange={passwordField.onChange}
-            placeholder={passwordField.placeholder}
-          />
-        </Form.Group>
-        {loginException}
-        <br />
-        <Button className="bg-white text-black" variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
+      <div className="flex justify-center">
+        <Form
+          onSubmit={handleSubmit}
+          className="flex w-1/2 justify-center items-center"
+        >
+          <Form.Group>
+            <Form.Control
+              id={passwordField.id}
+              type={passwordField.type}
+              value={passwordField.value}
+              onChange={passwordField.onChange}
+              placeholder={passwordField.placeholder}
+            />
+          </Form.Group>
+          {loginException}
+          <br />
+          <Button className="bg-white text-black" variant="primary" type="submit">
+            Login
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

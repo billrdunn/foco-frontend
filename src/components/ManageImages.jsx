@@ -42,7 +42,7 @@ function ImageGrid() {
     <div>
       <Header />
       <h1 className="text-white">tap an image to delete it</h1>
-      <div className="grid pt-[30px]">
+      <div className="grid-small pt-[30px]">
         {imgs.map((img) => (
           <GridItem onClick={() => onClickThumbnail(img)} key={img.id} img={img} />
         ))}
@@ -55,7 +55,7 @@ function ManageImages() {
   const authenticated = useSelector((state) => state.authenticated);
 
   return (
-    <div className="bg-black absolute w-auto h-auto px-[10px] pb-[10px]">
+    <div className="bg-black absolute w-screen h-auto min-h-screen px-[10px] pb-[10px]">
       {authenticated ? <ImageGrid /> : <LoginForm />};
     </div>
   );
