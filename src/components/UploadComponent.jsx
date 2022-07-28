@@ -275,7 +275,7 @@ function UploadComponent() {
               </div>
             ) : (
               <UploadButton
-                className="font-domaine px-6 py-1.5 text-black rounded-full"
+                className="font-domaine px-[13px] py-1 text-black rounded-full"
                 onClick={() => handleClick()}
               >
                 <div className="w-56 text-lg">Upload face</div>
