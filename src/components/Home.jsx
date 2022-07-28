@@ -6,7 +6,7 @@ import Header from "./Header";
 
 function Home() {
   return (
-    <div className="bg-black px-10px pb-10px w-auto h-screen">
+    <div className="bg-black px-10px w-auto h-screen ">
       <Header/>
       <HomePageText />
       <ImagesGrid />
