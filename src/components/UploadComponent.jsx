@@ -267,10 +267,10 @@ function UploadComponent() {
           key: `${newUrlStr}.jpg`,
         }}
       >
-        <div className="flex grow justify-center items-center ">
+        <div className="flex grow h-full justify-center items-center bg-blue-700">
           <div>
-            {isUploading ? (
-              <div>
+            {!isUploading ? (
+              <div className="bg-pink-700">
                 <Uploading />
               </div>
             ) : (
