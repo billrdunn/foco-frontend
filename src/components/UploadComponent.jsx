@@ -163,11 +163,9 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   const [croppedImg, setCroppedImg] = useState(null);
   //   const navigate = useNavigate();
 
-  const handleFallback = () => {
-    if (isFallback) {
-      window.location.reload(true);
-    }
-  };
+  if (isFallback) {
+    window.location.reload(true);
+  }
 
   // data for react-easy-crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -185,7 +183,6 @@ const ItemPreviewWithCrop = withRequestPreSendUpdate((props) => {
   useItemProgressListener(() => setUploadState(UPLOAD_STATES.UPLOADING), id);
   useItemProgressListener(() => dispatch(showImgs(true)));
   useItemProgressListener(() => dispatch(showUploading(true)));
-  useItemStartListener(() => handleFallback());
   useItemFinalizeListener(() => setUploadState(UPLOAD_STATES.FINISHED), id);
 
   const onUploadCrop = useCallback(async () => {
