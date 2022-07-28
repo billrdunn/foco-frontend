@@ -6,7 +6,7 @@ import Header from "./Header";
 
 function Home() {
   return (
-    <div className="bg-black absolute w-full h-full overflow-hidden px-[10px]">
+    <div className="bg-black absolute w-auto h-auto px-[10px] pb-[10px]">
       <Header/>
       <HomePageText />
       <ImagesGrid />
