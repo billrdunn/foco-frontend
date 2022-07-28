@@ -6,12 +6,12 @@ import UploadComponent from "./UploadComponent";
 import HomePageText from "./HomePageText";
 
 function Upload() {
-  const isUploading = !useSelector((state) => state.showUploading);
+  const isUploading = useSelector((state) => state.showUploading);
 
   if (isUploading) {
     return (
       <div className="bg-black absolute w-full h-full overflow-clip">
-        <div className="flex flex-col h-full bg-purple-500">
+        <div className="flex flex-col h-full ">
           <Header />
           <HomePageText blank={!isUploading} />
           <UploadComponent />
@@ -21,12 +21,12 @@ function Upload() {
   }
   return (
     <div className="bg-black absolute w-full h-full overflow-clip">
-      <div className="flex flex-col h-full bg-pink-400">
+      <div className="flex flex-col h-full ">
         <Header />
         <HomePageText blank={!isUploading} />
         <UploadComponent />
         <HomePageText blank={!isUploading} />
-        <div className="flex w-auto h-[85px] items-end mt-[60px]" />
+        <div className="flex w-auto h-auto pb-[85px] " />
       </div>
     </div>
   );
