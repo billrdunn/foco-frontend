@@ -31,15 +31,19 @@ export function useWindowDimensions() {
 }
 
 function ImagesGrid() {
-
   const tmp = useSelector((state) => state.imgUrls);
   const imgs = tmp.slice().reverse();
+  const [clicked, setClicked] = useState(false);
+
+  const gridType = clicked ? "grid-large" : "grid-small";
 
   return (
-    <div className="grid pt-[60px]">
-      {imgs.map((img) => (
-        <GridItem key={img.id} img={img} />
-      ))}
+    <div className="bg-black w-auto h-auto">
+      <div className={`${gridType} pt-[60px]`}>
+        {imgs.map((img) => (
+          <GridItem key={img.id} img={img} onClick={() => setClicked(!clicked)} />
+        ))}
+      </div>
     </div>
   );
 }
