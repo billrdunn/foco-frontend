@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useSelector } from "react-redux";
 import Header from "./Header";
@@ -6,13 +7,23 @@ import HomePageText from "./HomePageText";
 
 function Upload() {
   const isUploading = useSelector((state) => state.showUploading);
-  return (
-    <div className="flex flex-col bg-blue-300 px-10px pb-10px w-auto h-screen">
-      <div className="flex flex-col bg-green-300 h-full">
+
+  if (isUploading) {
+    return (
+      <div className="flex flex-col h-screen bg-black">
         <Header />
         <HomePageText blank={!isUploading} />
         <UploadComponent />
       </div>
+    );
+  }
+  return (
+    <div className="flex flex-col h-screen bg-black">
+      <Header />
+      <HomePageText blank={!isUploading} />
+      <UploadComponent />
+      <HomePageText blank={!isUploading} />
+      <div className="flex w-auto h-[85px] items-end mt-[60px]" />
     </div>
   );
 }

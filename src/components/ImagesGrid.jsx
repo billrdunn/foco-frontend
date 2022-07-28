@@ -36,7 +36,7 @@ function ImagesGrid() {
   const imgs = tmp.slice().reverse();
 
   return (
-    <div className="grid">
+    <div className="grid pt-[60px]">
       {imgs.map((img) => (
         <GridItem key={img.id} img={img} />
       ))}
