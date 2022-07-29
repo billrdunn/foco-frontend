@@ -37,8 +37,9 @@ function HomePageText({ blank }) {
           </div>
           <div className="h-auto align-top w-auto justify-center  pt-[60px]">
             <div className="mob:columns-1 tab:columns-1 desk:columns-2 ">
-              <div className="text-white text-center font-domaine">
+              <div className="text-white text-center font-domaine ">
                 <a
+                  className=" hover:text-[#39FF14]"
                   href="https://www.instagram.com/foco.bcn/"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -46,7 +47,9 @@ function HomePageText({ blank }) {
                   Instagram
                 </a>
                 <span className="block mb-[-2px]" />
-                <a href="mailto:info@focobcn.com">Email</a>
+                <a className=" hover:text-[#39FF14]" href="mailto:info@focobcn.com">
+                  Email
+                </a>
               </div>
             </div>
           </div>

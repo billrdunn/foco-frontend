@@ -30,15 +30,22 @@ function Header() {
     <div className="flex place-content-evenly mob:columns-1 tab:columns-1 desk:columns-3 py-[60px]">
       <div className="flex items-center h-auto logo ">
         <div className=" h-auto w-autologo mx-auto items-end text-white font-domaine">
-          <a href="mailto:info@focobcn.com">Email</a>
+          <a className=" hover:text-[#39FF14]" href="mailto:info@focobcn.com">
+            Email
+          </a>
         </div>
       </div>
       <div className="h-auto mx-[-88px] logo items-end ">
         <Logo />
       </div>
       <div className="flex h-auto logo items-center ">
-        <div className=" text-white w-autologo mx-auto items-end b  font-domaine">
-          <a href="https://www.instagram.com/foco.bcn/" target="_blank" rel="noreferrer noopener">
+        <div className=" w-autologo mx-auto items-end font-domaine text-white">
+          <a
+            className=" hover:text-[#39FF14]"
+            href="https://www.instagram.com/foco.bcn/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             Instagram
           </a>
         </div>
