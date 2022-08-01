@@ -26,7 +26,7 @@ function App() {
       </Helmet>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/kjd7q2bniv09892inafkjf74hertoqm309fnli3498h3" element={<Upload />} />
+        <Route path="/foocccooooface" element={<Upload />} />
         <Route path="/manage-images" element={<ManageImages />} />
       </Routes>
     </div>
