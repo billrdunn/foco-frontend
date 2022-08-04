@@ -1,5 +1,5 @@
 import React from "react";
-import PropTyes from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const ButtonsWrapper = styled.div`
@@ -16,11 +16,11 @@ const ButtonsWrapper = styled.div`
 
 function UploadPreviewButtons({ finished, crop, updateRequest, onUploadCancel, onUploadCrop }) {
   UploadPreviewButtons.propTypes = {
-    finished: PropTyes.bool.isRequired,
-    crop: PropTyes.shape.isRequired,
-    updateRequest: PropTyes.func.isRequired,
-    onUploadCancel: PropTyes.func.isRequired,
-    onUploadCrop: PropTyes.func.isRequired,
+    finished: PropTypes.bool.isRequired,
+    crop: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }).isRequired,
+    updateRequest: PropTypes.func.isRequired,
+    onUploadCancel: PropTypes.func.isRequired,
+    onUploadCrop: PropTypes.func.isRequired,
   };
   return (
     <ButtonsWrapper>

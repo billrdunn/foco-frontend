@@ -13,7 +13,7 @@ import getCroppedImg from "../cropImage";
 import "../styles.css";
 import { showUploading } from "../reducers/showUploadingReducer";
 import { setNewUrlStr } from "../reducers/newUrlStrReducer";
-import Uploading from "./Uploading";
+import RotatingIcon from "./RotatingIcon";
 import UploadPreviewButtons from "./UploadPreviewButtons";
 import UploadFinishListener from "./UploadFinishListener";
 
@@ -138,7 +138,7 @@ function UploadComponent() {
           <div>
             {isUploading ? (
               <div className="">
-                <Uploading />
+                <RotatingIcon />
               </div>
             ) : (
               <UploadButton

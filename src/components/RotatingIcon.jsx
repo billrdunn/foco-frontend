@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-function Uploading() {
+function RotatingIcon() {
   const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -24,4 +24,4 @@ function Uploading() {
   );
 }
 
-export default Uploading;
+export default RotatingIcon;

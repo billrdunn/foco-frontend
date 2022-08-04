@@ -54,7 +54,7 @@ function UploadFinishListener() {
             console.log("Exception while deleting raw image :>> ", exception);
           }
           break;
-        } else if (count >= 2) {
+        } else if (count >= 45) {
           // If processing takes longer than 45 seconds, cancel and show error
           dispatch(showUploading(false));
           dispatch(setUploadSuccess(false));
