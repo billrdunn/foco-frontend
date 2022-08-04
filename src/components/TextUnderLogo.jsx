@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import useWindowDimensions from "../hooks";
 
-// eslint-disable-next-line react/prop-types
-function HomePageText({ blank }) {
-  // eslint-disable-next-line no-unused-vars
-  const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  });
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    });
-  }, []);
+function TextUnderLogo({ blank }) {
+  TextUnderLogo.propTypes = {
+    blank: PropTypes.bool.isRequired,
+  };
 
+  // Use custom hook to get window dimensions
+  const dimensions = useWindowDimensions();
+
+  // Return different text design depending on window width
+  // note a blank component is used to keep consistent design when no text is needed
   if (!blank) {
-    if (window.innerWidth < 1024) {
+    // contains text
+    if (dimensions.width < 1024) {
+      // Mobile/tablet text (email & insta links, single col)
       return (
         <>
           <div className="h-auto align-top w-auto justify-center ">
@@ -56,7 +54,7 @@ function HomePageText({ blank }) {
         </>
       );
     }
-    // desktop view
+    // Desktop text (no email & insta links, two cols)
     return (
       <div className="h-auto align-top w-auto justify-center ">
         <div className="mob:columns-1 tab:columns-1 desk:columns-2 ">
@@ -74,6 +72,7 @@ function HomePageText({ blank }) {
       </div>
     );
   }
+  // Blank component, same size as with text
   return (
     <div className="h-auto align-top w-auto justify-center ">
       <div className="mob:columns-1 tab:columns-1 desk:columns-2 ">
@@ -90,4 +89,4 @@ function HomePageText({ blank }) {
   );
 }
 
-export default HomePageText;
+export default TextUnderLogo;

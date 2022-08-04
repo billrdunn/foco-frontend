@@ -1,40 +1,19 @@
-/* eslint-disable react/jsx-no-target-blank */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-// import { Container } from "react-bootstrap";
 
 import "../styles.css";
 import GridItem from "./GridItem";
-// import Gallery from "react-grid-gallery";
-
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-}
-
-export function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowDimensions;
-}
 
 function ImagesGrid() {
+  // Get urls of all images from the store
   const tmp = useSelector((state) => state.imgUrls);
+  // Order images from first to last
   const imgs = tmp.slice().reverse();
-  const [clicked, setClicked] = useState(false);
 
+  // Large grid has max. 2 columns
+  // Small grid has min. 2 columns
+  // Grid size toggled by clicking any image
+  const [clicked, setClicked] = useState(false);
   const gridType = clicked ? "grid-large" : "grid-small";
 
   return (

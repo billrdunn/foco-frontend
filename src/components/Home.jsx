@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-no-target-blank */
 import React from "react";
-import HomePageText from "./HomePageText";
+import TextUnderLogo from "./TextUnderLogo";
 import ImagesGrid from "./ImagesGrid";
 import Header from "./Header";
 
@@ -8,7 +7,7 @@ function Home() {
   return (
     <div className="bg-black w-auto h-auto min-h-screen px-[10px] pb-[10px]">
       <Header/>
-      <HomePageText />
+      <TextUnderLogo />
       <ImagesGrid />
     </div>
   );

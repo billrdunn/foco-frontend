@@ -18,6 +18,7 @@ function App() {
 
   return (
     <div>
+      {/* Fix the height and width of app and prevent unnecessary scrolling, and user resizing */}
       <Helmet>
         <meta
           name="viewport"

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 
 function Header() {
-  // eslint-disable-next-line no-unused-vars
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
 
   useEffect(() => {
+    // Listen for resize events and rerender page when they occur
     window.addEventListener("resize", () => {
       setDimensions({
         height: window.innerHeight,
@@ -17,7 +17,9 @@ function Header() {
     });
   }, []);
 
-  if (window.innerWidth < 1024) {
+  // Return different header design depending on window width
+  if (dimensions.width < 1024) {
+    // Mobile/tablet header (no email & insta links)
     return (
       <div className="flex place-content-evenly mob:columns-1 tab:columns-1 desk:columns-3 py-[60px]">
         <div className="h-auto mx-[-88px] logo items-end ">
@@ -26,6 +28,7 @@ function Header() {
       </div>
     );
   }
+  // Desktop header (contains email & insta links)
   return (
     <div className="flex place-content-evenly mob:columns-1 tab:columns-1 desk:columns-3 py-[60px]">
       <div className="flex items-center h-auto logo ">

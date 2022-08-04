@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Header from "./Header";
 import UploadComponent from "./UploadComponent";
-import HomePageText from "./HomePageText";
+import TextUnderLogo from "./TextUnderLogo";
 
 function Upload() {
   const isUploading = useSelector((state) => state.showUploading);
@@ -13,7 +13,7 @@ function Upload() {
       <div className="bg-black absolute w-full h-full overflow-clip">
         <div className="flex flex-col h-full ">
           <Header />
-          <HomePageText blank={!isUploading} />
+          <TextUnderLogo blank={!isUploading} />
           <UploadComponent />
         </div>
       </div>
@@ -23,9 +23,9 @@ function Upload() {
     <div className="bg-black absolute w-full h-full overflow-clip">
       <div className="flex flex-col h-full ">
         <Header />
-        <HomePageText blank={!isUploading} />
+        <TextUnderLogo blank={!isUploading} />
         <UploadComponent />
-        <HomePageText blank={!isUploading} />
+        <TextUnderLogo blank={!isUploading} />
         <div className="flex w-auto h-auto pb-[85px] " />
       </div>
     </div>

@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const useField = (type, id, placeholder) => {
-  const [value, setValue] = useState("");
-
-  const onChange = (event) => {
-    setValue(event.target.value);
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
   };
-
-  return { id, type, value, onChange, placeholder };
 };
 
-export default useField;
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions(getWindowDimensions());
+    };
+
+    window.addEventListener("resize", () => handleResize());
+    return () => window.removeEventListener("resize", () => handleResize());
+  }, []);
+
+  return windowDimensions;
+};
+
+export default useWindowDimensions;
