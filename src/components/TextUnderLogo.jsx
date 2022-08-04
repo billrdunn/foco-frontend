@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useWindowDimensions from "../hooks";
-
+import { useWindowDimensions } from "../hooks";
 
 function TextUnderLogo({ blank }) {
   TextUnderLogo.propTypes = {

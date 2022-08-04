@@ -8,7 +8,7 @@ const getWindowDimensions = () => {
   };
 };
 
-const useWindowDimensions = () => {
+export const useWindowDimensions = () => {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   useEffect(() => {
@@ -23,4 +23,13 @@ const useWindowDimensions = () => {
   return windowDimensions;
 };
 
-export default useWindowDimensions;
+export const useField = (type, id, placeholder) => {
+  const [value, setValue] = useState("");
+
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return { id, type, value, onChange, placeholder };
+};
+
