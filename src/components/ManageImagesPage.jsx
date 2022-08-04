@@ -51,7 +51,7 @@ function ImageGrid() {
   );
 }
 
-function ManageImages() {
+function ManageImagesPage() {
   const authenticated = useSelector((state) => state.authenticated);
 
   return (
@@ -61,4 +61,4 @@ function ManageImages() {
   );
 }
 
-export default ManageImages;
+export default ManageImagesPage;

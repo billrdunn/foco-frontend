@@ -3,14 +3,14 @@ import TextUnderLogo from "./TextUnderLogo";
 import ImagesGrid from "./ImagesGrid";
 import Header from "./Header";
 
-function Home() {
+function HomePage() {
   return (
     <div className="bg-black w-auto h-auto min-h-screen px-[10px] pb-[10px]">
-      <Header/>
-      <TextUnderLogo />
+      <Header />
+      <TextUnderLogo blank={false} />
       <ImagesGrid />
     </div>
   );
 }
 
-export default Home;
+export default HomePage;

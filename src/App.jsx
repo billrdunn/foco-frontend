@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import Home from "./components/Home";
+import HomePage from "./components/HomePage";
 import { initImgs } from "./reducers/imgUrlsReducer";
-import Upload from "./components/Upload";
-import ManageImages from "./components/ManageImages";
+import ManageImagesPage from "./components/ManageImagesPage";
+import UploadPage from "./components/UploadPage";
 import "./styles.css";
 
 function App() {
@@ -26,12 +26,23 @@ function App() {
         />
       </Helmet>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/foocccooooface" element={<Upload />} />
-        <Route path="/manage-images" element={<ManageImages />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/foocccooooface" element={<UploadPage />} />
+        <Route path="/manage-images" element={<ManageImagesPage />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+// For AWS bucket policy:
+
+// "Condition": {
+//   "StringLike": {
+//     "aws:Referer": [
+//       "https://www.focobcn.com/*",
+//       "https://focobcn.com/*"
+//     ]
+//   }
+// }

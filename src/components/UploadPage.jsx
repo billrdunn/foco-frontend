@@ -5,31 +5,24 @@ import Header from "./Header";
 import UploadComponent from "./UploadComponent";
 import TextUnderLogo from "./TextUnderLogo";
 
-function Upload() {
+function UploadPage() {
   const isUploading = useSelector((state) => state.showUploading);
 
-  if (isUploading) {
-    return (
-      <div className="bg-black absolute w-full h-full overflow-clip">
-        <div className="flex flex-col h-full ">
-          <Header />
-          <TextUnderLogo blank={!isUploading} />
-          <UploadComponent />
-        </div>
-      </div>
-    );
-  }
   return (
     <div className="bg-black absolute w-full h-full overflow-clip">
       <div className="flex flex-col h-full ">
         <Header />
         <TextUnderLogo blank={!isUploading} />
         <UploadComponent />
-        <TextUnderLogo blank={!isUploading} />
-        <div className="flex w-auto h-auto pb-[85px] " />
+        {!isUploading && (
+          <div>
+            <TextUnderLogo blank />
+            <div className="flex w-auto h-auto pb-[85px] " />
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default Upload;
+export default UploadPage;
