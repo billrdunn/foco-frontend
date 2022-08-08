@@ -12,8 +12,8 @@ function GridItem({ img, onClick }) {
   };
 
   return (
-    <div>
-      <img alt="pic" src={img.url} onClick={onClick} />
+    <div className="GridItem">
+      <img className="GridItemImg" alt="pic" src={img.url} onClick={onClick} />
     </div>
   );
 }

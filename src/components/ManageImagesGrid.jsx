@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../styles.css";
 import { deleteImgUrl } from "../reducers/imgUrlsReducer";
-import Header from "./Header";
 import GridItem from "./GridItem";
 
 function ImageGrid() {
@@ -18,7 +17,6 @@ function ImageGrid() {
 
   return (
     <div>
-      <Header />
       <h1 className="text-white">tap an image to delete it</h1>
       <div className="grid-small pt-[30px]">
         {imgs.map((img) => (

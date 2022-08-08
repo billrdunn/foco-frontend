@@ -1,14 +1,12 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { authenticate } from "../reducers/authenticatedReducer";
 import { useField } from "../hooks/index";
-import Header from "./Header";
 
 function LoginForm() {
   const dispatch = useDispatch();
-
-  const loginException = useSelector((state) => state.loginException);
+  const [loginFailed, setLoginFailed] = useState(false);
 
   const passwordField = useField("password", "loginInputPassword", "password");
 
@@ -16,13 +14,15 @@ function LoginForm() {
     event.preventDefault();
 
     if (passwordField.value === process.env.REACT_APP_MANAGE_PASSWORD) {
+      setLoginFailed(false);
       dispatch(authenticate(true));
+    } else {
+      setLoginFailed(true);
     }
   };
 
   return (
     <div>
-      <Header />
       <div className="flex justify-center">
         <Form onSubmit={handleSubmit} className="flex w-1/2 justify-center items-center">
           <Form.Group>
@@ -34,12 +34,14 @@ function LoginForm() {
               placeholder={passwordField.placeholder}
             />
           </Form.Group>
-          {loginException}
-          <br />
           <Button className="bg-white text-black" variant="primary" type="submit">
             Login
           </Button>
         </Form>
+      </div>
+      <div className="flex justify-center">
+        <br />
+        {loginFailed && <div className="passwordError text-red-500">Incorrect password</div>}
       </div>
     </div>
   );

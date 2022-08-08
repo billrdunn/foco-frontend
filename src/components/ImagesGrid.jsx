@@ -17,10 +17,14 @@ function ImagesGrid() {
   const gridType = clicked ? "grid-large" : "grid-small";
 
   return (
-    <div className="bg-black w-auto h-auto">
+    <div className="imagesGrid bg-black w-auto h-auto">
       <div className={`${gridType} pt-[60px]`}>
         {imgs.map((img) => (
-          <GridItem key={img.id} img={img} onClick={() => setClicked(!clicked)} />
+          <GridItem
+            key={img.id}
+            img={img}
+            onClick={() => setClicked(!clicked)}
+          />
         ))}
       </div>
     </div>

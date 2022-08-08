@@ -18,7 +18,7 @@ function TextUnderLogo({ blank }) {
       // Mobile/tablet text (email & insta links, single col)
       return (
         <>
-          <div className="h-auto align-top w-auto justify-center ">
+          <div className="textUnderLogoMobile h-auto align-top w-auto justify-center ">
             <div className="mob:columns-1 tab:columns-1 desk:columns-2 ">
               <div className="text-white text-center font-domaine">
                 01.08.22 — Swift, Shoreditch
@@ -55,7 +55,7 @@ function TextUnderLogo({ blank }) {
     }
     // Desktop text (no email & insta links, two cols)
     return (
-      <div className="h-auto align-top w-auto justify-center ">
+      <div className="textUnderLogoDesktop h-auto align-top w-auto justify-center ">
         <div className="mob:columns-1 tab:columns-1 desk:columns-2 ">
           <div className="text-white text-center font-domaine">
             01.08.22 — Swift, Shoreditch
